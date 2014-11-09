@@ -1,6 +1,5 @@
-tabbit_rabbit
+Tabbit Rabbit
 =============
-
 Receipt Splitting App
 
 ##Problem Space:
