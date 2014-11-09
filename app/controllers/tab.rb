@@ -4,6 +4,6 @@ end
 
 get '/tab/new' do
 	@tab = Tab.includes(:items).first
-	@rabbits = [Rabbit.first]
+	@rabbits = Rabbit.all
 	erb :'tab/new'
 end
