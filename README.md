@@ -32,4 +32,4 @@ which items on a collective reciept are there own.
  - many-to-many w/ Persons (so require a join table)
 
 ##Schema:
-![Schema](schema.png "Title")
+![Schema](public/img/schema.png "Schema")
