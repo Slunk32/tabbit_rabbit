@@ -3,5 +3,6 @@ get '/' do #TODO remove '/'
 end
 
 get '/tab/new' do
+	@tab = Tab.includes(:items).first
 	erb :'tab/new'
 end
