@@ -1,4 +1,23 @@
 <% @tab.items.each do |item| %>
-	<%= item.name %>
-	<%= item.price %>
+<ul class="list-group">
+	<%= erb :'tab/_item', locals: {item: item} %>
+</ul>
 <% end %>
+<div class="row col-sm-12 col-md-12 col-lg-12">
+	<% @rabbits.each do |rabbit| %>
+	<div class="btn-group dropup">
+		<button type="button" class="btn btn-success"><%= rabbit.name %></button>
+		<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+			<span class="caret"></span>
+			<span class="sr-only">Toggle Dropdown</span>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li><a href="#">Action</a></li>
+			<li><a href="#">Another action</a></li>
+			<li><a href="#">Something else here</a></li>
+			<li class="divider"></li>
+			<li><a href="#">Separated link</a></li>
+		</ul>
+	</div>
+	<% end%>
+</div>

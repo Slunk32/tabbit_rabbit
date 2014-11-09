@@ -15,6 +15,9 @@ gem 'rake'
 
 gem 'shotgun'
 
+# Other gems
+gem 'money'
+
 group :test do
   gem 'shoulda-matchers'
   gem 'rack-test'
