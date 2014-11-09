@@ -5,6 +5,7 @@ body { padding-bottom: 70px; }
 }
 
 [draggable] {
+	cursor: move;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
@@ -15,5 +16,7 @@ body { padding-bottom: 70px; }
 }
 
 .over {
-  border: 2px dashed #000;
+	outline: none;
+	border-color: #EDD29E;  /*#9ecaed*/
+	box-shadow: 0 0 10px #EDD29E;
 }

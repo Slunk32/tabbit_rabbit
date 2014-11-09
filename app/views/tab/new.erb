@@ -1,23 +1,44 @@
-<% @tab.items.each do |item| %>
-<ul class="list-group">
-	<%= erb :'tab/_item', locals: {item: item} %>
-</ul>
-<% end %>
-<div class="row col-sm-12 col-md-12 col-lg-12">
-	<% @rabbits.each do |rabbit| %>
-	<div class="btn-group dropup">
-		<button type="button" class="btn btn-success"><%= rabbit.name %></button>
-		<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-			<span class="caret"></span>
-			<span class="sr-only">Toggle Dropdown</span>
-		</button>
-		<ul class="dropdown-menu" role="menu">
-			<li><a href="#">Action</a></li>
-			<li><a href="#">Another action</a></li>
-			<li><a href="#">Something else here</a></li>
-			<li class="divider"></li>
-			<li><a href="#">Separated link</a></li>
-		</ul>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title"><%= @tab.name %></h3>
 	</div>
+	<div class="panel-body">
+		<% @tab.items.each do |item| %>
+		<ul class="list-group">
+			<%= erb :'tab/_item', locals: {item: item} %>
+		</ul>
+		<% end %>
+	</div>
+</div>
+<div class="row col-sm-12 col-md-12 col-lg-12">
+	<span class="rabbits-list">
+	<% @rabbits.each do |rabbit| %>
+	<%= erb :'rabbit/_rabbit', locals: {rabbit: rabbit} %>
 	<% end%>
+	</span>
+	<!-- Button trigger modal -->
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addModal">
+	  Add Someone
+	</button>
+
+	<!-- Modal -->
+	<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addSomeone" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title" id="addSomeone">Add Someone</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<%= erb :'rabbit/_new' %>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" class="add_user btn btn-primary">Save changes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
 </div>
