@@ -4,6 +4,7 @@ function Rabbit(options) {
 	this.phone = options.phone;
 	this.email = options.email;
 	this.items = options.items || [];
+	this.subtotal = options.subtotal || 0;
 }
 
 Rabbit.prototype = {

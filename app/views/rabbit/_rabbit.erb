@@ -1,5 +1,5 @@
 <div class="btn-group dropup rabbit" id="rabbit_<%= rabbit.id %>">
-	<button type="button" class="rabbit_name btn btn-success"><%= rabbit.name %></button>
+	<button type="button" class="btn btn-success"><span class='rabbit_name'><%= rabbit.name %></span> | <span class='rabbit_subtotal'><%= dollarize(rabbit.subtotal) %></span></button>
 	<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
 		<span class="caret"></span>
 		<span class="sr-only">Toggle Dropdown</span>

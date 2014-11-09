@@ -22,6 +22,7 @@ class CreateBaseSchema < ActiveRecord::Migration
   		t.string :name
   		t.string :email
   		t.string :phone_number
+      t.belongs_to :tab
   		t.timestamps
   	end
 

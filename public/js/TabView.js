@@ -66,7 +66,7 @@ TabView.prototype = {
 		this.hideAddModal();
 		var newRabbit = $(this.rabbit).first().clone();
 		newRabbit.attr('id','rabbit_' + rabbitObj.id);
-		// TODO reset subtotal
+		newRabbit.find('.rabbit_subtotal').text('$' + rabbitObj.subtotal.toFixed(2));
 		newRabbit.find('.rabbit_name').text(rabbitObj.name);
 		newRabbit.children('button').removeClass('btn-success').addClass('btn-danger');
 		newRabbit.find('.remove_rabbit').attr('href','/rabbit/' + rabbitObj.id + '/delete');
