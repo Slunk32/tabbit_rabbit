@@ -25,13 +25,13 @@ class CreateBaseSchema < ActiveRecord::Migration
   		t.timestamps
   	end
 
-  	create_table tabs_rabbits do |t|
+  	create_table :rabbits_tabs do |t|
   		t.belongs_to :tab
   		t.belongs_to :rabbit
   		t.timestamps
   	end
 
-  	create_table rabbits_items do |t|
+  	create_table :items_rabbits do |t|
 	  	t.belongs_to :item
 	  	t.belongs_to :rabbit
 	  	t.timestamps	
