@@ -31,7 +31,8 @@ Controller.prototype = {
 			}
 			var itemID = item.data('id');
 			var itemObj = this.tab.selectItem(itemID);
-			this.tabView.colorItem({'itemID': itemID, 'itemObj': itemObj, 'rabbit': this.tab.selectedRabbit});
+			this.tabView.colorItem({'itemID': itemID, 'itemObj': itemObj});
+			this.tabView.updateSubtotals(this.tab.rabbits);
 		}
 	},
 

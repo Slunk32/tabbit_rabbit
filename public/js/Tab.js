@@ -16,7 +16,14 @@ Tab.prototype = {
 	selectItem: function(itemID) {
 		var item = this.findWithId(this.items,itemID);
 		this.selectedRabbit.toggleOwnershipOfItem(item);
+		this.updateSubtotals();
 		return item;
+	},
+
+	updateSubtotals: function() {
+		for (var i=0; i < this.rabbits.length; i++) {
+			this.rabbits[i].recalculateSubtotal();
+		}
 	},
 
 	addRabbit: function(rabbitData) {

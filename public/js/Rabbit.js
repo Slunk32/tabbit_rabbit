@@ -12,9 +12,10 @@ Rabbit.prototype = {
 	toggleOwnershipOfItem: function(item) {
 		if (this.items.indexOf(item) >= 0) {
 			this.items.pop(item);
+			item.removeRabbit(this);
 		} else {
 			this.items.push(item);
-			this.recalculateSubtotal();
+			item.addRabbit(this);
 		}
 	},
 
@@ -25,7 +26,7 @@ Rabbit.prototype = {
 	recalculateSubtotal: function() {
 		this.subtotal = 0;
 		for (var i=0; i < this.items.length; i++) {
-			this.subtotal += this.items[i].price;
+			this.subtotal += this.items[i].price / (1.0 * (this.items[i].rabbits.length));
 		}
 		this.subtotal /= 100.0;
 	}

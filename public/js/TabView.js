@@ -104,15 +104,28 @@ TabView.prototype = {
 		},
 
 		changeSelectedRabbitColor: function(rabbitID) {
-			this.selectedRabbitColor = $('#rabbit_' + rabbitID).data('colorclass');
+			this.selectedRabbitColor = this.getRabbitColor(rabbitID);
 		},
 
 		colorItem: function(params) {
 			var item = $('*[data-id="' + params.itemID + '"]');
-			item.removeClass('list-group-item-*');
-			item.addClass('list-group-item-' + this.selectedRabbitColor);
-			// update subtotal
-			$('#rabbit_' + params.rabbit.id).find('.rabbit_subtotal').text('$' + params.rabbit.subtotal.toFixed(2));
+			for (var i=0; i < this.colorClasses.length; i++) {
+				item.removeClass('list-group-item-' + this.colorClasses[i]);
+			}
+			for (var j=0; j < params.itemObj.rabbits.length; j++) {
+				var color = this.getRabbitColor(params.itemObj.rabbits[j].id);
+				item.addClass('list-group-item-' + color);
+			}
+		},
+
+		updateSubtotals: function(rabbits) {
+			for (var i=0; i < rabbits.length; i++) {
+				$('#rabbit_' + rabbits[i].id).find('.rabbit_subtotal').text('$' + rabbits[i].subtotal.toFixed(2));
+			}
+		},
+
+		getRabbitColor: function(rabbit_id) {
+			return $('#rabbit_' + rabbit_id).data('colorclass');
 		}
 
 };
