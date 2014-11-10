@@ -2,6 +2,7 @@ function Tab(options) {
 	this.id = options.id || null;
 	this.items = options.items || [];
 	this.rabbits = options.rabbits || [];
+	this.selectedRabbit = null;
 }
 
 Tab.prototype = {
@@ -14,6 +15,14 @@ Tab.prototype = {
 		var rabbit = new Rabbit(rabbitData);
 		this.rabbits.concat(rabbit);
 		return rabbit;
+	},
+
+	changeSelectedRabbit: function(rabbitID) {
+		this.selectedRabbit = rabbitID;
+	},
+
+	selectItem: function() {
+
 	}
 
 };
