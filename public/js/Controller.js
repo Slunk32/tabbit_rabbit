@@ -30,8 +30,8 @@ Controller.prototype = {
 				item = item.parent();
 			}
 			var itemID = item.data('id');
-			this.tab.selectItem(itemID);
-			this.tabView.colorItem(itemID);
+			var itemObj = this.tab.selectItem(itemID);
+			this.tabView.colorItem({'itemID': itemID, 'itemObj': itemObj, 'rabbit': this.tab.selectedRabbit});
 		}
 	},
 

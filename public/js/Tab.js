@@ -16,6 +16,7 @@ Tab.prototype = {
 	selectItem: function(itemID) {
 		var item = this.findWithId(this.items,itemID);
 		this.selectedRabbit.toggleOwnershipOfItem(item);
+		return item;
 	},
 
 	addRabbit: function(rabbitData) {

@@ -10,7 +10,7 @@ function Rabbit(options) {
 Rabbit.prototype = {
 
 	toggleOwnershipOfItem: function(item) {
-		if ($.inArray(item, this.items)) {
+		if (this.items.indexOf(item) >= 0) {
 			this.items.pop(item);
 		} else {
 			this.items.push(item);
@@ -27,6 +27,7 @@ Rabbit.prototype = {
 		for (var i=0; i < this.items.length; i++) {
 			this.subtotal += this.items[i].price;
 		}
+		this.subtotal /= 100.0;
 	}
 
 };

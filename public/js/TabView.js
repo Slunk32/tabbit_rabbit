@@ -107,10 +107,12 @@ TabView.prototype = {
 			this.selectedRabbitColor = $('#rabbit_' + rabbitID).data('colorclass');
 		},
 
-		colorItem: function(itemID) {
-			var item = $('*[data-id="' + itemID + '"]');
+		colorItem: function(params) {
+			var item = $('*[data-id="' + params.itemID + '"]');
 			item.removeClass('list-group-item-*');
 			item.addClass('list-group-item-' + this.selectedRabbitColor);
+			// update subtotal
+			$('#rabbit_' + params.rabbit.id).find('.rabbit_subtotal').text('$' + params.rabbit.subtotal.toFixed(2));
 		}
 
 };
