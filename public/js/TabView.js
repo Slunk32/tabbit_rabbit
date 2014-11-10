@@ -1,6 +1,7 @@
 function TabView() {
 	this.item = '.tab_item';
 	this.addButton = '.add_user';
+	this.saveRabbit = '.save_rabbit';
 	this.formToAddRabbit = '#add_rabbit';
 	this.addModal = '#addModal';
 	this.rabbit = '.rabbit';
@@ -90,15 +91,16 @@ TabView.prototype = {
 	  },
 
 	  addRabbit: function(rabbitObj) {
-	  	this.hideAddModal();
+	  	that = this;
+	  	that.hideAddModal();
 	  	var newRabbit = $(this.rabbit).first().clone();
 	  	newRabbit.attr('id','rabbit_' + rabbitObj.id);
 	  	newRabbit.find('.rabbit_subtotal').text('$' + rabbitObj.subtotal.toFixed(2));
 	  	newRabbit.find('.rabbit_name').text(rabbitObj.name);
-	  	newRabbit.children('button').removeClass('btn-success').addClass('btn-' + this.colorClasses[this.rabbits.children().length - 1]);
+	  	newRabbit.children('button').removeClass('btn-success').addClass('btn-' + that.colorClasses[$(that.rabbits).children().length]);
 	  	newRabbit.find('.remove_rabbit').attr('href','/rabbit/' + rabbitObj.id + '/delete');
 	  	newRabbit.appendTo(this.rabbits);
-	  	hideAddButtonIfNecessary();
+	  	that.hideAddButtonIfNecessary();
 		},
 
 		changeSelectedRabbitColor: function(rabbitID) {

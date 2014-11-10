@@ -1,5 +1,6 @@
 function Tab(options) {
 	this.id = options.id || null;
+	this.name = options.name || null;
 	this.items = options.items || [];
 	this.rabbits = options.rabbits || [];
 	this.selectedRabbit = null;
@@ -7,22 +8,50 @@ function Tab(options) {
 
 Tab.prototype = {
 
-	addItem: function(item) {
-		this.items.concat(item);
+	addItem: function(itemData) {
+		var item = new Item(itemData);
+		this.items.push(item);
+	},
+
+	selectItem: function(itemID) {
+		var item = this.findWithId(this.item,itemID);
+		this.selectedRabbit.toggleOwnershipOfItem(item);
 	},
 
 	addRabbit: function(rabbitData) {
 		var rabbit = new Rabbit(rabbitData);
-		this.rabbits.concat(rabbit);
+		this.rabbits.push(rabbit);
 		return rabbit;
 	},
 
 	changeSelectedRabbit: function(rabbitID) {
-		this.selectedRabbit = rabbitID;
+		var rabbit = this.findWithId(this.rabbits,rabbitID);
+		this.selectedRabbit = rabbit;
 	},
 
-	selectItem: function() {
+	findWithId: function(collection,id) {
+		var found;
+		for (var i = 0; i < collection.length; i++) {
+			if (collection[i].id === id) {
+				found = collection[i];
+			}
+		}
+		return found;
+	},
 
+	parseData: function(data) {
+		console.log(data);
+		this.name = data.tab.name;
+		for (var i=0; i < data.items.length; i++) {
+			this.addItem(data.items[i]);
+		}
+		console.log(data.rabbits);
+		for (var j=0; j < data.rabbits.length; j++) {
+			this.addRabbit(data.rabbits[j]);
+		}
+		console.log(this.items);
+		console.log(this.rabbits);
+		return true;
 	}
 
 };

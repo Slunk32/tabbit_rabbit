@@ -4,9 +4,10 @@ $(document).ready(function() {
   // when we try to bind to them
 
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
-  var parameters = {	tab: new Tab({}),
+  var parameters = {	tab: new Tab({id: $('.tab_name').data('id') }),
   										tabView: new TabView()
   									};
   var controller = new Controller(parameters);
+  controller.updateTab();
   controller.bindEvents();
 });

@@ -3,9 +3,21 @@ get '/' do #TODO remove '/'
 end
 
 get '/tab/new' do
-	@tab = Tab.includes(:items).first
-	@rabbits = Rabbit.all
+	@tab = Tab.includes(:items).includes(:rabbits).first
+	@rabbits = @tab.rabbits
 	erb :'tab/new'
+end
+
+
+get '/tab/:id' do
+	p params[:id]
+	if request.xhr?
+		tab = Tab.includes(:rabbits).includes(:items).find(params[:id])
+		rabbits = tab.rabbits
+		items = tab.items
+		content_type :json
+		{tab: tab, rabbits: rabbits, items: items}.to_json
+	end
 end
 
 post '/tab/:id/rename' do

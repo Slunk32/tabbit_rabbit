@@ -16,7 +16,9 @@ file.each do |item|
 	Item.create(name: name, price: price, tab_id: tab.id)
 end
 
-Rabbit.create(	name: 'Andrew',
-								email: 'andrew.m.archer@gmail.com',
-								phone_number: '415-555-5555'
-							)
+rabbit = Rabbit.create(	name: 'Andrew',
+												email: 'andrew.m.archer@gmail.com',
+												phone_number: '415-555-5555'
+											)
+
+tab.rabbits << rabbit
