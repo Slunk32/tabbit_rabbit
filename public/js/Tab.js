@@ -14,7 +14,7 @@ Tab.prototype = {
 	},
 
 	selectItem: function(itemID) {
-		var item = this.findWithId(this.item,itemID);
+		var item = this.findWithId(this.items,itemID);
 		this.selectedRabbit.toggleOwnershipOfItem(item);
 	},
 
@@ -32,7 +32,7 @@ Tab.prototype = {
 	findWithId: function(collection,id) {
 		var found;
 		for (var i = 0; i < collection.length; i++) {
-			if (collection[i].id === id) {
+			if (collection[i].id == id) {
 				found = collection[i];
 			}
 		}
@@ -40,17 +40,13 @@ Tab.prototype = {
 	},
 
 	parseData: function(data) {
-		console.log(data);
 		this.name = data.tab.name;
 		for (var i=0; i < data.items.length; i++) {
 			this.addItem(data.items[i]);
 		}
-		console.log(data.rabbits);
 		for (var j=0; j < data.rabbits.length; j++) {
 			this.addRabbit(data.rabbits[j]);
 		}
-		console.log(this.items);
-		console.log(this.rabbits);
 		return true;
 	}
 

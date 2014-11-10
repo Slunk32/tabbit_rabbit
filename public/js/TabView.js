@@ -105,7 +105,6 @@ TabView.prototype = {
 
 		changeSelectedRabbitColor: function(rabbitID) {
 			this.selectedRabbitColor = $('#rabbit_' + rabbitID).data('colorclass');
-			console.log(this.selectedRabbitColor);
 		},
 
 		colorItem: function(itemID) {

@@ -22,9 +22,7 @@ Controller.prototype = {
 
 	toggleItemSelect: function() {
 		// TODO: Refactor the next line into the view
-		console.log('in your item select');
 		if (! this.tab.selectedRabbit) {
-			console.log('select a rabbit!');
 			return false;
 		} else {
 			var item = $(event.target);
@@ -57,8 +55,6 @@ Controller.prototype = {
 		})
 		.done(function(res) {
 			var rabbit = that.tab.addRabbit(res);
-			console.log('returning a rabbit');
-			console.log(rabbit);
 			that.tabView.addRabbit(rabbit);
 		})
 		.fail(function(err) {
@@ -76,11 +72,8 @@ Controller.prototype = {
 		})
 		.done( function(res) {
 			if (that.tab.parseData(res)) {
-				console.log('success parsing data');
 			} else {
-				console.log('failed to updateTab: ' + res);
 			}
 		})
-		.fail( function(e) { console.log(e); });
 	}
 };
