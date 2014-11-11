@@ -20,3 +20,123 @@ body { padding-bottom: 70px; }
 	border-color: #EDD29E;  /*#9ecaed*/
 	box-shadow: 0 0 10px #EDD29E;
 }
+
+/*
+success = #dff0d8
+info = #d9edf7
+warning = #FCF8E3
+danger = #f2dede
+*/
+
+.list-group-item-warning.list-group-item-danger {
+  color: black;
+  background-image: -ms-linear-gradient(left, #F2DEDE 0%, #FCF8E3 100%);
+  background-image: -moz-linear-gradient(left, #F2DEDE 0%, #FCF8E3 100%);
+  background-image: -o-linear-gradient(left, #F2DEDE 0%, #FCF8E3 100%);
+  background-image: -webkit-gradient(linear, left top, left top, color-stop(0, #F2DEDE), color-stop(1, #FCF8E3));
+  background-image: -webkit-linear-gradient(left, #F2DEDE 0%, #FCF8E3 100%);
+  background-image: linear-gradient(to right, #F2DEDE 0%, #FCF8E3 100%);
+}
+
+.list-group-item-info.list-group-item-warning {
+  color: black;
+  background-image: -ms-linear-gradient(left, #d9edf7 0%, #FCF8E3 100%);
+  background-image: -moz-linear-gradient(left, #d9edf7 0%, #FCF8E3 100%);
+  background-image: -o-linear-gradient(left, #d9edf7 0%, #FCF8E3 100%);
+  background-image: -webkit-gradient(linear, left top, left top, color-stop(0, #d9edf7), color-stop(1, #FCF8E3));
+  background-image: -webkit-linear-gradient(left, #d9edf7 0%, #FCF8E3 100%);
+  background-image: linear-gradient(to right, #d9edf7 0%, #FCF8E3 100%);
+}
+
+.list-group-item-success.list-group-item-warning {
+  color: black;
+  background-image: -ms-linear-gradient(left, #dff0d8 0%, #FCF8E3 100%);
+  background-image: -moz-linear-gradient(left, #dff0d8 0%, #FCF8E3 100%);
+  background-image: -o-linear-gradient(left, #dff0d8 0%, #FCF8E3 100%);
+  background-image: -webkit-gradient(linear, left top, left top, color-stop(0, #dff0d8), color-stop(1, #FCF8E3));
+  background-image: -webkit-linear-gradient(left, #dff0d8 0%, #FCF8E3 100%);
+  background-image: linear-gradient(to right, #dff0d8 0%, #FCF8E3 100%);
+}
+
+/*    NEXT SET  */
+
+
+.list-group-item-success.list-group-item-danger {
+  color: black;
+  background-image: -ms-linear-gradient(left, #dff0d8 0%, #F2DEDE 100%);
+  background-image: -moz-linear-gradient(left, #dff0d8 0%, #F2DEDE 100%);
+  background-image: -o-linear-gradient(left, #dff0d8 0%, #F2DEDE 100%);
+  background-image: -webkit-gradient(linear, left top, left top, color-stop(0, #dff0d8), color-stop(1, #F2DEDE));
+  background-image: -webkit-linear-gradient(left, #dff0d8 0%, #F2DEDE 100%);
+  background-image: linear-gradient(to right, #dff0d8 0%, #F2DEDE 100%);
+}
+
+.list-group-item-info.list-group-item-danger {
+  color: black;
+  background-image: -ms-linear-gradient(left, #d9edf7 0%, #F2DEDE 100%);
+  background-image: -moz-linear-gradient(left, #d9edf7 0%, #F2DEDE 100%);
+  background-image: -o-linear-gradient(left, #d9edf7 0%, #F2DEDE 100%);
+  background-image: -webkit-gradient(linear, left top, left top, color-stop(0, #d9edf7), color-stop(1, #F2DEDE));
+  background-image: -webkit-linear-gradient(left, #d9edf7 0%, #F2DEDE 100%);
+  background-image: linear-gradient(to right, #d9edf7 0%, #F2DEDE 100%);
+}
+
+/*    LAST SET  */
+
+.list-group-item-success.list-group-item-info {
+  color: black;
+  background-image: -ms-linear-gradient(left, #dff0d8 0%, #d9edf7 100%);
+  background-image: -moz-linear-gradient(left, #dff0d8 0%, #d9edf7 100%);
+  background-image: -o-linear-gradient(left, #dff0d8 0%, #d9edf7 100%);
+  background-image: -webkit-gradient(linear, left top, left top, color-stop(0, #dff0d8), color-stop(1, #d9edf7));
+  background-image: -webkit-linear-gradient(left, #dff0d8 0%, #d9edf7 100%);
+  background-image: linear-gradient(to right, #dff0d8 0%, #d9edf7 100%);
+}
+
+/* THREES! */
+
+.list-group-item-success.list-group-item-info.list-group-item-warning {
+  color: black;
+  background-image: -ms-linear-gradient(left, #dff0d8 0%, #d9edf7 50%, #FCF8E3 100%);
+  background-image: -moz-linear-gradient(left, #dff0d8 0%, #d9edf7 50%, #FCF8E3 100%);
+  background-image: -o-linear-gradient(left, #dff0d8 0%, #d9edf7 50%, #FCF8E3 100%);
+  background-image: -webkit-linear-gradient(left, #dff0d8 0%, #d9edf7 50%, #FCF8E3 100%);
+  background-image: linear-gradient(to right, #dff0d8 0%, #d9edf7 50%, #FCF8E3 100%);
+}
+
+.list-group-item-success.list-group-item-info.list-group-item-danger {
+  color: black;
+  background-image: -ms-linear-gradient(left, #dff0d8 0%, #d9edf7 50%, #f2dede 100%);
+  background-image: -moz-linear-gradient(left, #dff0d8 0%, #d9edf7 50%, #f2dede 100%);
+  background-image: -o-linear-gradient(left, #dff0d8 0%, #d9edf7 50%, #f2dede 100%);
+  background-image: -webkit-linear-gradient(left, #dff0d8 0%, #d9edf7 50%, #f2dede 100%);
+  background-image: linear-gradient(to right, #dff0d8 0%, #d9edf7 50%, #f2dede 100%);
+}
+
+.list-group-item-success.list-group-item-warning.list-group-item-danger {
+  color: black;
+  background-image: -ms-linear-gradient(left, #dff0d8 0%, #FCF8E3 50%, #f2dede 100%);
+  background-image: -moz-linear-gradient(left, #dff0d8 0%, #FCF8E3 50%, #f2dede 100%);
+  background-image: -o-linear-gradient(left, #dff0d8 0%, #FCF8E3 50%, #f2dede 100%);
+  background-image: -webkit-linear-gradient(left, #dff0d8 0%, #FCF8E3 50%, #f2dede 100%);
+  background-image: linear-gradient(to right, #dff0d8 0%, #FCF8E3 50%, #f2dede 100%);
+}
+
+.list-group-item-info.list-group-item-warning.list-group-item-danger {
+  color: black;
+  background-image: -ms-linear-gradient(left, #d9edf7 0%, #FCF8E3 50%, #f2dede 100%);
+  background-image: -moz-linear-gradient(left, #d9edf7 0%, #FCF8E3 50%, #f2dede 100%);
+  background-image: -o-linear-gradient(left, #d9edf7 0%, #FCF8E3 50%, #f2dede 100%);
+  background-image: -webkit-linear-gradient(left, #d9edf7 0%, #FCF8E3 50%, #f2dede 100%);
+  background-image: linear-gradient(to right, #d9edf7 0%, #FCF8E3 50%, #f2dede 100%);
+}
+
+/* FOURS! */
+.list-group-item-success.list-group-item-info.list-group-item-warning.list-group-item-danger {
+  color: black;
+  background-image: -ms-linear-gradient(left,#dff0d8 0%, #d9edf7 33%, #FCF8E3 67%, #f2dede 100%);
+  background-image: -moz-linear-gradient(left,#dff0d8 0%, #d9edf7 33%, #FCF8E3 67%, #f2dede 100%);
+  background-image: -o-linear-gradient(left,#dff0d8 0%, #d9edf7 33%, #FCF8E3 67%, #f2dede 100%);
+  background-image: -webkit-linear-gradient(left,#dff0d8 0%, #d9edf7 33%, #FCF8E3 67%, #f2dede 100%);
+  background-image: linear-gradient(to right,#dff0d8 0%, #d9edf7 33%, #FCF8E3 67%, #f2dede 100%);
+}

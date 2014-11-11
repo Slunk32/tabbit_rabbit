@@ -119,9 +119,13 @@ TabView.prototype = {
 			for (var i=0; i < this.colorClasses.length; i++) {
 				item.removeClass('list-group-item-' + this.colorClasses[i]);
 			}
-			for (var j=0; j < params.itemObj.rabbits.length; j++) {
-				var color = this.getRabbitColor(params.itemObj.rabbits[j].id);
-				item.addClass('list-group-item-' + color);
+			if (params.itemObj.rabbits.length < 2) {
+				item.addClass('list-group-item-' + this.getRabbitColor(params.itemObj.rabbits[0].id));
+			} else {
+				for (var j=0; j < params.itemObj.rabbits.length; j++) {
+					var color = this.getRabbitColor(params.itemObj.rabbits[j].id);
+					item.addClass('list-group-item-' + color);
+				}
 			}
 		},
 
