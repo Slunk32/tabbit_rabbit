@@ -32,3 +32,4 @@ user.save
 
 user.rabbits << rabbit
 tab.rabbits << rabbit
+user.tabs << tab
