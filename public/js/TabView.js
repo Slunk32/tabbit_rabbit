@@ -29,7 +29,7 @@ TabView.prototype = {
 		$tab.editable({
                    type:  'text',
                    pk:    tabID,
-                   url: '/tab/' + tabID + '/rename',  
+                   url: '/tab/' + tabID + '/rename',
                    title: 'Tab Name',
                    name: 'name',
                    value: $tab.text(),
@@ -46,10 +46,11 @@ TabView.prototype = {
 	},
 
 	handleDragStart: function(event) {
-		$(this).css('opacity','0.4');
+		$(this).css('opacity','1');
+		// Purposefully a GLOBAL variable
 		dragSrcEl = this;
 		event.originalEvent.dataTransfer.effectAllowed = 'move';
-		event.originalEvent.dataTransfer.setData('text/html', this.innerHTML);
+		event.originalEvent.dataTransfer.setData('text/html', this.outerHTML);
 	},
 
 	handleDragOver: function(event) {
@@ -74,10 +75,14 @@ TabView.prototype = {
 		}
 	  // Don't do anything if dropping the same column we're dragging.
 	  if (dragSrcEl != this) {
-	      // Set the source column's HTML to the HTML of the column we dropped on.
-	      dragSrcEl.innerHTML = this.innerHTML;
-	      this.innerHTML = event.originalEvent.dataTransfer.getData('text/html');
+		  	$(this).removeClass('over');
+	      dragSrcEl.outerHTML = this.outerHTML;
+				this.outerHTML = event.originalEvent.dataTransfer.getData('text/html');
+	      // var replacement = event.originalEvent.dataTransfer.getData('text/html');
+	      // replacement.style.opacity = "1.0";
+	      // this.outerHTML = replacement;
 	    }
+
 	    return false;
 	  },
 
