@@ -1,21 +1,29 @@
-get '/' do #TODO remove '/'
+get '/' do 
+	#TODO remove this (for dev purposes only)
+	session[:user_id] = User.first.id
 	redirect '/tab/new'
 end
 
+before '/tab/*' do
+	redirect '/login' unless authenticated?
+end
+
 get '/tab/new' do
-	@tab = Tab.includes(:items).includes(:rabbits).first
-	@rabbits = @tab.rabbits
+	@user = current_user
+	p @user.tabs
+	#TODO remove .first!
+	@tab = @user.tabs.includes(:items).includes(:rabbits).first
+	@rabbits = @user.rabbits
 	erb :'tab/new'
 end
 
 
 get '/tab/:id' do
-	p params[:id]
 	if request.xhr?
+		content_type :json
 		tab = Tab.includes(:rabbits).includes(:items).find(params[:id])
 		rabbits = tab.rabbits
 		items = tab.items
-		content_type :json
 		{tab: tab, rabbits: rabbits, items: items}.to_json
 	end
 end

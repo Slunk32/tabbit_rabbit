@@ -17,6 +17,7 @@ gem 'shotgun'
 
 # Other gems
 gem 'money'
+gem 'bcrypt'
 
 group :test do
   gem 'shoulda-matchers'

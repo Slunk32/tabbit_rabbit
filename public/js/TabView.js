@@ -97,6 +97,8 @@ TabView.prototype = {
 	  	newRabbit.attr('id','rabbit_' + rabbitObj.id);
 	  	newRabbit.find('.rabbit_subtotal').text('$' + rabbitObj.subtotal.toFixed(2));
 	  	newRabbit.find('.rabbit_name').text(rabbitObj.name);
+	  	// set colors
+	  	newRabbit.data('colorclass',that.colorClasses[$(that.rabbits).children().length]);
 	  	newRabbit.children('button').removeClass('btn-success').addClass('btn-' + that.colorClasses[$(that.rabbits).children().length]);
 	  	newRabbit.find('.remove_rabbit').attr('href','/rabbit/' + rabbitObj.id + '/delete');
 	  	newRabbit.appendTo(this.rabbits);
