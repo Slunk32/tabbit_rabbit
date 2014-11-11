@@ -1,6 +1,14 @@
-<form class="form-signin" role="form">
+<form class="form-signin" role="form" method="post" action="/login">
   <h2 class="form-signin-heading">Please sign in</h2>
-  <input type="email" class="form-control" placeholder="Email address" required autofocus>
-  <input type="password" class="form-control" placeholder="Password" required>
+  <div class="form-group">
+    <label class="control-label" for="email">  </label>
+    <input type="email" id="email" name="email" class="form-control" placeholder="Email address" value="<%= @email if @email %>" required autofocus>
+    <% if @errors && @errors[:email] %><span class="help-block"><%= @errors[:email] %></span><% end %>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="password">  </label>
+    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+    <% if @errors && @errors[:password] %><span class="help-block"><%= @errors[:password]  %></span><% end %>
+  </div>
   <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 </form>

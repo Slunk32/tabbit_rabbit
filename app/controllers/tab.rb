@@ -1,6 +1,6 @@
-get '/' do 
+get '/' do
 	#TODO remove this (for dev purposes only)
-	session[:user_id] = User.first.id
+	# session[:user_id] = User.first.id
 	redirect '/tab/new'
 end
 
