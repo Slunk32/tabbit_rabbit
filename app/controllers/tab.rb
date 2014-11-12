@@ -23,7 +23,7 @@ end
 
 post '/tabs/new' do
   @user = current_user
-  @tab = Tab.new(name: "Untitled Tab")
+  @tab = Tab.create(name: "Untitled Tab")
   @tab.items = get_items(params)
   @tab.user = @user
   @tab.rabbits << Rabbit.find(@user.avatar_rabbit_id)
@@ -61,4 +61,9 @@ post '/tab/:id/rename' do
 	else
 		{errors: @tab.errors}.to_json
 	end
+end
+
+post '/tab/newimage' do
+	@image = params[:image]
+	
 end

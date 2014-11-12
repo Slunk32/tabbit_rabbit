@@ -18,6 +18,7 @@ gem 'shotgun'
 # Other gems
 gem 'money'
 gem 'bcrypt'
+gem 'aws-sdk'
 
 group :test do
   gem 'shoulda-matchers'

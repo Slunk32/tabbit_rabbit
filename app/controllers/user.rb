@@ -14,6 +14,7 @@ post '/login' do
     session[:errors] = {email: "No account with that username"}
     redirect '/login'
   elsif @user.password == params[:password]
+    session[:email] = nil
     session[:user_id] = @user.id
     redirect '/'
   else
@@ -38,6 +39,7 @@ post '/users/new' do
   @user = User.new(params[:user])
   @user.password = params[:password]
   if @user.save
+    session[:user] = nil
     session[:user_id] = @user.id
     redirect '/'
   else
