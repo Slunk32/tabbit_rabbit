@@ -30,6 +30,10 @@ Rabbit.prototype = {
 			this.subtotal += this.items[i].price / (1.0 * (this.items[i].rabbits.length));
 		}
 		this.subtotal /= 100.0;
+	},
+
+	removeAllItems: function() {
+		this.items = [];
 	}
 
 };

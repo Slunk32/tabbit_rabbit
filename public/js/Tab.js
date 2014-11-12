@@ -34,6 +34,17 @@ Tab.prototype = {
 		return rabbit;
 	},
 
+	removeRabbit: function(rabbitID) {
+		var rabbit = this.findWithId(this.rabbits, rabbitID);
+		for (var i=0; i < this.items.length; i++) {
+			this.items[i].removeRabbit(rabbit);
+		}
+		rabbit.removeAllItems();
+		this.rabbits.splice(this.rabbits.indexOf(rabbit),1);
+		this.updateSubtotals();
+		return rabbit;
+	},
+
 	changeSelectedRabbit: function(rabbitID) {
 		var rabbit = this.findWithId(this.rabbits,rabbitID);
 		this.selectedRabbit = rabbit;

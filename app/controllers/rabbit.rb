@@ -17,7 +17,9 @@ delete '/tab/:tab_id/rabbit/:rabbit_id' do
 	tab = Tab.find(params[:tab_id])
 	rabbit = Rabbit.find(params[:rabbit_id])
 	if tab && tab.rabbits.delete(rabbit)
-		204
+		content_type :json
+		p rabbit.to_json
+		{id: rabbit.id}.to_json
 	else
 		halt 400, rabbit.errors.to_json
 	end

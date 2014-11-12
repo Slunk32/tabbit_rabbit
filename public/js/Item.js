@@ -12,7 +12,9 @@ Item.prototype = {
 	},
 
 	removeRabbit: function(rabbit) {
-		this.rabbits.splice(this.rabbits.indexOf(rabbit),1);
+		if (this.rabbits.indexOf(rabbit) > -1) {
+			this.rabbits.splice(this.rabbits.indexOf(rabbit),1);
+		}
 	}
 
 };

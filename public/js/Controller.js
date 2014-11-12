@@ -11,6 +11,7 @@ Controller.prototype = {
 		this.makeRabbitsSelectable();
 		this.makeItemsSelectable();
 		$(this.tabView.saveRabbit).on('click', this.addRabbit.bind(this));
+		$(document).on('click', this.tabView.removeRabbit, this.removeRabbit.bind(this));
 	},
 
 	changeSelectedRabbit: function() {
@@ -23,7 +24,7 @@ Controller.prototype = {
 	toggleItemSelect: function() {
 		// TODO: Refactor the next line into the view
 		if (! this.tab.selectedRabbit) {
-			console.log('no rabbit selected')
+			console.log('no rabbit selected');
 			return false;
 		} else {
 			var item = $(event.target);
@@ -64,11 +65,37 @@ Controller.prototype = {
 		});
 	},
 
+	removeRabbit: function () {
+		event.preventDefault();
+		var that = this;
+		var rabbitNode = $(event.target).parents('.rabbit');
+		var rabbitID = rabbitNode.attr('id').substring(7);
+		$.ajax({
+			url: '/tab/' + that.tab.id + '/rabbit/' + rabbitID,
+			type: 'delete',
+			data: {}
+		})
+		.done(function(res) {
+			console.log(that.tabView.removeRabbit);
+			that.tab.removeRabbit(res.id);
+			that.tabView.removeRabbitNode(res.id);
+			// var rabbitColor = 
+			// for (var i=0; i < that.items.length; i++) {
+			// 	that.tabView.removeColor(rabbitColor, that.items[i]);
+			// }
+			that.tabView.updateSubtotals(that.tab.rabbits);
+		})
+		.fail(function(err) {
+			console.log(err);
+		});
+	},
+
 	updateTab: function() {
 		// give the tab its info including all rabbits, items, and items that belong to rabbits
 		var that = this;
+		$.ajaxSetup({ cache: false });
 		$.ajax({
-			url: '/tab/' + this.tab.id,
+			url: '/tab/' + that.tab.id,
 			type: 'get',
 			data: {}
 		})

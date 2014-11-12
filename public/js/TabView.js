@@ -10,6 +10,7 @@ function TabView() {
 	this.tabName = '.tab_name';
 	this.colorClasses = ["success","info","warning","danger","primary"];
 	this.selectedRabbitColor = this.colorClasses[0];
+	this.removeRabbit = '.remove_rabbit';
 }
 
 TabView.prototype = {
@@ -95,9 +96,16 @@ TabView.prototype = {
 	  	$(this.addModal).modal('hide');
 	  },
 
+	  removeRabbitNode: function(rabbitID) {
+	  	var color = this.getRabbitColor(rabbitID);
+	  	$('#rabbit_' + rabbitID).remove();
+	  	this.removeColor(color);
+	  },
+
 	  addRabbit: function(rabbitObj) {
 	  	that = this;
 	  	that.hideAddModal();
+	  	// TODO: replace with template
 	  	var newRabbit = $(this.rabbit).first().clone();
 	  	newRabbit.attr('id','rabbit_' + rabbitObj.id);
 	  	newRabbit.find('.rabbit_subtotal').text('$' + rabbitObj.subtotal.toFixed(2));
@@ -133,6 +141,10 @@ TabView.prototype = {
 
 		getRabbitColor: function(rabbit_id) {
 			return $('#rabbit_' + rabbit_id).data('colorclass');
+		},
+
+		removeColor: function(color) {
+			$(this.item).removeClass('list-group-item-' + color);
 		}
 
 };
