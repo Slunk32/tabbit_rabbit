@@ -2,10 +2,11 @@ body { padding-bottom: 70px; }
 
 .item_price {
 	float:right;
+  cursor:pointer;
 }
 
 [draggable] {
-	cursor: move;
+	cursor: pointer;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
@@ -27,6 +28,10 @@ info = #d9edf7
 warning = #FCF8E3
 danger = #f2dede
 */
+
+.list-group-item, .tab_item {
+  cursor: pointer;
+}
 
 .list-group-item-warning.list-group-item-danger {
   color: black;
