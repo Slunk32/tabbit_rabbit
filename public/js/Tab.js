@@ -14,7 +14,9 @@ Tab.prototype = {
 	},
 
 	selectItem: function(itemID) {
+		console.log('selectingItem in model')
 		var item = this.findWithId(this.items,itemID);
+		console.log(item)
 		this.selectedRabbit.toggleOwnershipOfItem(item);
 		this.updateSubtotals();
 		return item;

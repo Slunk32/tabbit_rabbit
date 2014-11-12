@@ -23,6 +23,7 @@ Controller.prototype = {
 	toggleItemSelect: function() {
 		// TODO: Refactor the next line into the view
 		if (! this.tab.selectedRabbit) {
+			console.log('no rabbit selected')
 			return false;
 		} else {
 			var item = $(event.target);

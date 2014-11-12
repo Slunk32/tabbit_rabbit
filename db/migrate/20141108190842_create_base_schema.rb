@@ -8,6 +8,7 @@ class CreateBaseSchema < ActiveRecord::Migration
   		t.text :raw_text
   		t.string :url
   		t.string :img_url
+      t.belongs_to :user
   		t.timestamps
   	end
 
@@ -22,7 +23,7 @@ class CreateBaseSchema < ActiveRecord::Migration
   		t.string :name
   		t.string :email
   		t.string :phone_number
-      t.belongs_to :tab
+      t.belongs_to :user
   		t.timestamps
   	end
 
@@ -37,5 +38,14 @@ class CreateBaseSchema < ActiveRecord::Migration
 	  	t.belongs_to :rabbit
 	  	t.timestamps	
 	  end
+
+    create_table :users do |t|
+      t.string :password_hash
+      t.string :name
+      t.string :email
+      t.string :phone_number
+      t.integer :avatar_rabbit_id
+      t.timestamps
+    end
   end
 end

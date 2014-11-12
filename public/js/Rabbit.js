@@ -10,9 +10,10 @@ function Rabbit(options) {
 Rabbit.prototype = {
 
 	toggleOwnershipOfItem: function(item) {
-		if (this.items.indexOf(item) >= 0) {
-			this.items.pop(item);
+		var index = this.items.indexOf(item)
+		if (index > -1) {
 			item.removeRabbit(this);
+			this.items.splice(index, 1);
 		} else {
 			this.items.push(item);
 			item.addRabbit(this);

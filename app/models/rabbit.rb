@@ -1,6 +1,7 @@
 class Rabbit < ActiveRecord::Base
   has_and_belongs_to_many :items
-  belongs_to :tab
+  has_and_belongs_to_many :tabs
+  belongs_to :user
 
   def subtotal
   	return 0 if items.empty?

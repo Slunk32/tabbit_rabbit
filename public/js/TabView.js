@@ -29,7 +29,7 @@ TabView.prototype = {
 		$tab.editable({
                    type:  'text',
                    pk:    tabID,
-                   url: '/tab/' + tabID + '/rename',  
+                   url: '/tab/' + tabID + '/rename',
                    title: 'Tab Name',
                    name: 'name',
                    value: $tab.text(),
@@ -46,10 +46,11 @@ TabView.prototype = {
 	},
 
 	handleDragStart: function(event) {
-		$(this).css('opacity','0.4');
+		$(this).css('opacity','1');
+		// Purposefully a GLOBAL variable
 		dragSrcEl = this;
 		event.originalEvent.dataTransfer.effectAllowed = 'move';
-		event.originalEvent.dataTransfer.setData('text/html', this.innerHTML);
+		event.originalEvent.dataTransfer.setData('text/html', this.outerHTML);
 	},
 
 	handleDragOver: function(event) {
@@ -74,10 +75,14 @@ TabView.prototype = {
 		}
 	  // Don't do anything if dropping the same column we're dragging.
 	  if (dragSrcEl != this) {
-	      // Set the source column's HTML to the HTML of the column we dropped on.
-	      dragSrcEl.innerHTML = this.innerHTML;
-	      this.innerHTML = event.originalEvent.dataTransfer.getData('text/html');
+		  	$(this).removeClass('over');
+	      dragSrcEl.outerHTML = this.outerHTML;
+				this.outerHTML = event.originalEvent.dataTransfer.getData('text/html');
+	      // var replacement = event.originalEvent.dataTransfer.getData('text/html');
+	      // replacement.style.opacity = "1.0";
+	      // this.outerHTML = replacement;
 	    }
+
 	    return false;
 	  },
 
@@ -97,6 +102,8 @@ TabView.prototype = {
 	  	newRabbit.attr('id','rabbit_' + rabbitObj.id);
 	  	newRabbit.find('.rabbit_subtotal').text('$' + rabbitObj.subtotal.toFixed(2));
 	  	newRabbit.find('.rabbit_name').text(rabbitObj.name);
+	  	// set colors
+	  	newRabbit.data('colorclass',that.colorClasses[$(that.rabbits).children().length]);
 	  	newRabbit.children('button').removeClass('btn-success').addClass('btn-' + that.colorClasses[$(that.rabbits).children().length]);
 	  	newRabbit.find('.remove_rabbit').attr('href','/rabbit/' + rabbitObj.id + '/delete');
 	  	newRabbit.appendTo(this.rabbits);
@@ -112,9 +119,13 @@ TabView.prototype = {
 			for (var i=0; i < this.colorClasses.length; i++) {
 				item.removeClass('list-group-item-' + this.colorClasses[i]);
 			}
-			for (var j=0; j < params.itemObj.rabbits.length; j++) {
-				var color = this.getRabbitColor(params.itemObj.rabbits[j].id);
-				item.addClass('list-group-item-' + color);
+			if (params.itemObj.rabbits.length < 2) {
+				item.addClass('list-group-item-' + this.getRabbitColor(params.itemObj.rabbits[0].id));
+			} else {
+				for (var j=0; j < params.itemObj.rabbits.length; j++) {
+					var color = this.getRabbitColor(params.itemObj.rabbits[j].id);
+					item.addClass('list-group-item-' + color);
+				}
 			}
 		},
 

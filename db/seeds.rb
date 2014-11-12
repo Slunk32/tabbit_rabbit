@@ -17,8 +17,19 @@ file.each do |item|
 end
 
 rabbit = Rabbit.create(	name: 'Andrew',
-												email: 'andrew.m.archer@gmail.com',
+												email: 'aarcher520@gmail.com',
 												phone_number: '415-555-5555'
 											)
 
+user = 		User.create(	name: 'Andrew',
+												email: 'aarcher520@gmail.com',
+												phone_number: '415-555-5555',
+												avatar_rabbit_id: rabbit.id
+											)
+
+user.password = 'testdb'
+user.save
+
+user.rabbits << rabbit
 tab.rabbits << rabbit
+user.tabs << tab
