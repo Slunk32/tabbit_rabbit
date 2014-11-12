@@ -1,11 +1,7 @@
 get '/' do
-	#TODO remove this (for dev purposes only)
-	# session[:user_id] = User.first.id
-	if current_user
+	if authenticated?
 		@user = current_user
-		@tabs = @user.tabs
-		p @user
-		p @tabs
+		@tabs = Tab.find_by(user_id: @user.id)
 	else
 		@tabs = nil
 	end
@@ -13,27 +9,31 @@ get '/' do
 	erb :home
 end
 
-before '/tab/*' do
+before '/tabs/*' do
 	redirect '/login' unless authenticated?
 end
 
-get '/tab/new' do
-	@user = current_user
-	p @user.tabs
-	#TODO remove .first!
-	@tab = @user.tabs.includes(:items).includes(:rabbits).first
-	@rabbits = @user.rabbits
-	erb :'tab/new'
+get '/tabs/new' do
+	erb :'tab/create'
+end
+
+get '/tabs/new' do
+	erb :'tab/create'
 end
 
 
-get '/tab/:id' do
+get '/tab/:tab_id' do
 	if request.xhr?
 		content_type :json
-		tab = Tab.includes(:rabbits).includes(:items).find(params[:id])
+		tab = Tab.includes(:rabbits).includes(:items).find(params[:tab_id])
 		rabbits = tab.rabbits
 		items = tab.items
 		{tab: tab, rabbits: rabbits, items: items}.to_json
+	else
+		@user = current_user
+		@tab = Tab.includes(:items).includes(:rabbits).find(params[:tab_id])
+		@rabbits = @user.rabbits
+		erb :'tab/tab'
 	end
 end
 
