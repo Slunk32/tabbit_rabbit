@@ -2,7 +2,7 @@
   <% unless @tabs.nil? || @tabs.empty? %>
     <h1>Your Tabs:</h1>
     <% @tabs.each do |tab| %>
-      <a href='/user'><%= tab.name %></a>
+      <a href='/tab/<%= tab.id %>'><%= tab.name %></a>
     <% end %>
   <% end %>
   <form class="form-signin" role="form" method="get" action="/tabs/new">

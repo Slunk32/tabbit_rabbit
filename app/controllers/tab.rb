@@ -1,7 +1,7 @@
 get '/' do
 	if authenticated?
 		@user = current_user
-		@tabs = Tab.find_by(user_id: @user.id)
+		@tabs = Tab.where(user_id: @user.id)
 	else
 		@tabs = nil
 	end
@@ -14,11 +14,26 @@ before '/tabs/*' do
 end
 
 get '/tabs/new' do
+	@tab = session[:tab]
+	@errors = session[:errors]
+	session[:errors] = nil
+	session[:tab] = nil
 	erb :'tab/create'
 end
 
-get '/tabs/new' do
-	erb :'tab/create'
+post '/tabs/new' do
+  @user = current_user
+  @tab = Tab.new(name: "Untitled Tab")
+  @tab.items = get_items(params)
+  @tab.user = @user
+  @tab.rabbits << Rabbit.find(@user.avatar_rabbit_id)
+  if @tab.save
+    redirect "/tab/#{@tab.id}"
+  else
+    session[:tab] = @tab
+    session[:errors] = "Could not save tab"
+    redirect '/tab/new'
+  end
 end
 
 
@@ -31,14 +46,14 @@ get '/tab/:tab_id' do
 		{tab: tab, rabbits: rabbits, items: items}.to_json
 	else
 		@user = current_user
-		@tab = Tab.includes(:items).includes(:rabbits).find(params[:tab_id])
-		@rabbits = @user.rabbits
+		@tab = Tab.includes(:items).find(params[:tab_id])
+		@rabbits = @tab.rabbits
+		@unused_rabbits = @user.rabbits.reject { |rabbit| @tab.rabbits.include?(rabbit) }
 		erb :'tab/tab'
 	end
 end
 
 post '/tab/:id/rename' do
-	p params
 	@tab = Tab.find(params[:id])
 	content_type :json
 	if @tab.update_attributes(name: params[:value])

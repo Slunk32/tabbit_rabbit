@@ -1,3 +1,18 @@
+<% if unused_rabbits && (! unused_rabbits.empty?) %>
+<form class="form-horizontal" id="add_existing" method="post" action="tab/<%= tab.id %>/addrabbit">
+	<div class="form-group">
+		<label class="col-xs-2 control-label" for="name">Existing: </label>
+		<div class="col-xs-8">
+			<select class="selectpicker" name="rabbit">
+		    <% unused_rabbits.each do |rabbit| %>
+		    	<option value="<%= rabbit.id %>"><%= rabbit.name %></option>
+				<% end %>
+			</select>
+			<button type="submit" class="btn btn-success btn-lg col-lg-12" value="submit" >Create!</button>
+		</div>
+	</div>
+</form>
+<% end %>
 <form class="form-horizontal" id="add_rabbit">
 	<div class="form-group">
 		<label class="col-xs-2 control-label" for="name">Name</label>
