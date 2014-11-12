@@ -20,25 +20,25 @@
     </div>
   <% end %>
   <div class="row">
-    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="overflow: hidden;">
+    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3" style="overflow: hidden;">
       <h4>Quantity</h4>
     </div>
-    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-6">
       <h4>Item Name</h4>
     </div>
-    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
       <h4>Price</h4>
     </div>
   </div>
   <% (1..10).each do |index| %>
     <div class="row">
-      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3">
         <input type="text" class="form-control text-right" placeholder="1" value="1" name="item_<%= index %>[quantity]" />
       </div>
-      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+      <div class="col-lg-9 col-md-9 col-sm-8 col-xs-6">
         <input type="text" class="form-control" placeholder="Item #<%= index %>" value="" name="item_<%= index %>[name]" />
       </div>
-      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
         <input type="text" class="form-control" pattern="\d+(\.\d{2})?" placeholder="0.00" value="" name="item_<%= index %>[price]" />
       </div>
     </div>
