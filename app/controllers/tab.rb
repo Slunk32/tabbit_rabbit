@@ -1,7 +1,16 @@
 get '/' do
 	#TODO remove this (for dev purposes only)
 	# session[:user_id] = User.first.id
-	redirect '/tab/new'
+	if current_user
+		@user = current_user
+		@tabs = @user.tabs
+		p @user
+		p @tabs
+	else
+		@tabs = nil
+	end
+
+	erb :home
 end
 
 before '/tab/*' do

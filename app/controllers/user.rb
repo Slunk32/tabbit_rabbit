@@ -22,23 +22,27 @@ post '/login' do
   end
 end
 
-get '/user/new' do
+get '/users/new' do
   redirect '/' if authenticated?
   # Prepare to render errors if there are any
+  @user = session[:user]
   @errors = session[:errors]
   session[:errors] = nil
 
   erb :signup
 end
 
-post '/user/new' do
+post '/users/new' do
+  user_params = Hash[params[:user].map { |k,v| [k.to_sym, v] } ]
+  session[:user] = user_params
   @user = User.new(params[:user])
   @user.password = params[:password]
   if @user.save
     session[:user_id] = @user.id
+    redirect '/'
   else
     session[:errors] = @user.errors
-    redirect '/user/new'
+    redirect '/users/new'
   end
 end
 

@@ -1,0 +1,21 @@
+<% if authenticated? %>
+  <% unless @tabs.nil? %>
+    <h1>Your Tabs:</h1>
+    <% @tabs.each do |tab| %>
+      <a href='/user'><%= tab.name %></a>
+    <% end %>
+  <% end %>
+  <form class="form-signin" role="form" method="post" action="/users/new">
+    <button class="btn btn-lg btn-warning btn-block" type="submit">Sign Up</button>
+  </form>
+<% else %>
+  <form class="form-signin text-center" role="form" method="get" action="/login">
+    <img src='/img/tblogo.png' class='text-center' />
+    <H1 class='brand text-center'>Welcome to Tabbit Rabbit</H1>
+    <button class="btn btn-lg btn-success btn-block" type="submit">Login</button>
+  </form>
+  <form class="form-signin" role="form" method="get" action="/users/new">
+    <button class="btn btn-lg btn-warning btn-block" type="submit">Sign Up</button>
+  </form>
+<% end %>
+

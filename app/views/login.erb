@@ -10,5 +10,10 @@
     <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
     <% if @errors && @errors[:password] %><span class="help-block"><%= @errors[:password]  %></span><% end %>
   </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+  <button class="btn btn-lg btn-success btn-block" type="submit">Sign In</button>
 </form>
+<!-- <form method="get" class="form-signin" action="/users/new">
+  <div class="form-group">
+    <button class="btn btn-lg btn-warning btn-block" type="submit">Sign Up</button>
+  </div>
+</form> -->
