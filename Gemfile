@@ -19,6 +19,7 @@ gem 'shotgun'
 gem 'money'
 gem 'bcrypt'
 gem 'aws-sdk'
+gem 'paperclip-rack'
 
 group :test do
   gem 'shoulda-matchers'
