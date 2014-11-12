@@ -1,13 +1,21 @@
 <% if authenticated? %>
-  <% unless @tabs.nil? || @tabs.empty? %>
-    <h1>Your Tabs:</h1>
-    <% @tabs.each do |tab| %>
-      <a href='/tab/<%= tab.id %>'><%= tab.name %></a>
-    <% end %>
-  <% end %>
   <form class="form-signin" role="form" method="get" action="/tabs/new">
     <button class="btn btn-lg btn-warning btn-block" type="submit">New Tab</button>
   </form>
+  <% unless @tabs.nil? || @tabs.empty? %>
+    <h1>Your Tabs:</h1>
+      <ul class="list-group">
+        <% @tabs.each do |tab| %>
+            <li class="tab_title list-group-item vcenter">
+              <a href="/tab/<%= tab.id %>">
+              <span class="tab_name col-lg-4 col-xs-4 vcenter"><strong><%= tab.name %></strong></span>
+              <span class="tab_dine_date col-lg-4 col-xs-4 vcenter"><%= tab.dine_date %></span>
+              <span class="tab_rabbit_count col-lg-4 col-xs-4 vcenter" style="overflow: hidden;"><%= tab.rabbits.length %> Rabbit<%= 's' if tab.rabbits.length > 1 %></span>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+  <% end %>
 <% else %>
   <form class="form-signin text-center" role="form" method="get" action="/login">
     <img src='/img/tblogo.png' class='text-center' />

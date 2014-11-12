@@ -145,3 +145,8 @@ danger = #f2dede
   background-image: -webkit-linear-gradient(left,#dff0d8 0%, #d9edf7 33%, #FCF8E3 67%, #f2dede 100%);
   background-image: linear-gradient(to right,#dff0d8 0%, #d9edf7 33%, #FCF8E3 67%, #f2dede 100%);
 }
+
+.tab_title {
+  cursor: pointer;
+  height: 40px;
+}
