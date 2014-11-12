@@ -114,6 +114,8 @@ TabView.prototype = {
 	  	newRabbit.data('colorclass',that.colorClasses[$(that.rabbits).children().length]);
 	  	newRabbit.children('button').removeClass('btn-success').addClass('btn-' + that.colorClasses[$(that.rabbits).children().length]);
 	  	newRabbit.find('.remove_rabbit').attr('href','/rabbit/' + rabbitObj.id + '/delete');
+	  	var remove = $('<li><a class="remove_rabbit" href="/rabbit/' + rabbitObj.id + '/delete">Remove</a></li>');
+	  	newRabbit.find('.rabbit_dropdown').append(remove);
 	  	newRabbit.appendTo(this.rabbits);
 	  	that.hideAddButtonIfNecessary();
 		},

@@ -4,10 +4,10 @@
 		<span class="caret"></span>
 		<span class="sr-only">Toggle Dropdown</span>
 	</button>
-	<ul class="dropdown-menu" role="menu">
-		<% #unless rabbit.id == user.avatar_rabbit_id %>
+	<ul class="dropdown-menu rabbit_dropdown" role="menu">
+		<% unless rabbit.id == user.avatar_rabbit_id %>
 		<li><a class="remove_rabbit" href="/rabbit/<%= rabbit.id %>/delete">Remove</a></li>
-		<% #end %>
+		<% end %>
 		<li><a class="edit_rabbit" href="/rabbit/<%= rabbit.id %>/edit">Edit</a></li>
 	</ul>
 </div>

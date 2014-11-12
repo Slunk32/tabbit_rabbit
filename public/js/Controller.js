@@ -76,7 +76,6 @@ Controller.prototype = {
 			data: {}
 		})
 		.done(function(res) {
-			console.log(that.tabView.removeRabbit);
 			that.tab.removeRabbit(res.id);
 			that.tabView.removeRabbitNode(res.id);
 			// var rabbitColor = 
@@ -103,6 +102,6 @@ Controller.prototype = {
 			if (that.tab.parseData(res)) {
 			} else {
 			}
-		})
+		});
 	}
 };
