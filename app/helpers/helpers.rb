@@ -5,7 +5,7 @@ helpers do
 		"$%.2f" % (price/100.0)
 	end
 
-	COLOR_CLASSES = ["success","info","warning","danger","primary"].each
+	COLOR_CLASSES = ["success","info","warning","danger","primary","success","info","warning","danger","primary"]
 
 	def authenticated?
 		(! current_user.nil?)

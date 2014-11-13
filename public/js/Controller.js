@@ -12,6 +12,7 @@ Controller.prototype = {
 		this.makeItemsSelectable();
 		$(this.tabView.saveRabbit).on('click', this.addRabbit.bind(this));
 		$(document).on('click', this.tabView.removeRabbit, this.removeRabbit.bind(this));
+		$(this.tabView.saveForm).on('submit',this.saveTab.bind(this));
 	},
 
 	changeSelectedRabbit: function() {
@@ -103,5 +104,10 @@ Controller.prototype = {
 			} else {
 			}
 		});
+	},
+
+	saveTab: function() {
+		event.preventDefault();
+		console.log(this);
 	}
 };

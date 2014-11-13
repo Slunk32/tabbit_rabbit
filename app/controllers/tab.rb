@@ -1,7 +1,7 @@
 get '/' do
 	if authenticated?
 		@user = current_user
-		@tabs = Tab.where(user_id: @user.id)
+		@tabs = Tab.where(user_id: @user.id).order(id: :desc)
 	else
 		@tabs = nil
 	end
@@ -63,7 +63,21 @@ post '/tab/:id/rename' do
 	end
 end
 
+put '/tab/:tab_id' do
+	if request.xhr?
+		@tab = Tab.find(params[:tab_id])
+		p params
+		@tab.items = get_items(params)
+		500
+		# content_type :json
+		# if @tab.save
+		# 	@tab.to_json
+		# else
+		# 	{errors: @tab.errors}.to_json
+		# end
+	end
+end
+
 post '/tab/newimage' do
 	@image = params[:image]
-	
 end

@@ -150,3 +150,11 @@ danger = #f2dede
   cursor: pointer;
   height: 40px;
 }
+
+.row {
+  margin-bottom: 10px;
+}
+
+#save_tab {
+  display: inline-block;
+}
