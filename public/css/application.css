@@ -1,8 +1,13 @@
 body { padding-bottom: 70px; }
 
-.item_price {
+.item_price, .rabbit_subtotal {
 	float:right;
   cursor:pointer;
+}
+
+#totals {
+  float:right;
+  padding-right: 10px;
 }
 
 [draggable] {
@@ -149,6 +154,7 @@ danger = #f2dede
 .tab_title {
   cursor: pointer;
   height: 40px;
+  background-image: none;
 }
 
 .row {

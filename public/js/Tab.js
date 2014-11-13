@@ -14,9 +14,7 @@ Tab.prototype = {
 	},
 
 	selectItem: function(itemID) {
-		console.log('selectingItem in model')
 		var item = this.findWithId(this.items,itemID);
-		console.log(item)
 		this.selectedRabbit.toggleOwnershipOfItem(item);
 		this.updateSubtotals();
 		return item;
@@ -68,7 +66,27 @@ Tab.prototype = {
 		for (var j=0; j < data.rabbits.length; j++) {
 			this.addRabbit(data.rabbits[j]);
 		}
+		for (var k=0; k < data.item_owners.length; k++) {
+			var itemID = data.item_owners[k].id;
+			for (var l=0; l < data.item_owners[k].rabbit_ids.length; l++) {
+				var rabbitID = data.item_owners[k].rabbit_ids[l];
+				this.changeSelectedRabbit(rabbitID);
+				this.selectItem(itemID);
+			}
+		}
+		this.selectedRabbit = null;
 		return true;
+	},
+
+	getItemState: function() {
+		var state = {};
+		for (var i=0; i < this.items.length; i++) {
+			state['' + this.items[i].id ] = [];
+			for (var j=0; j < this.items[i].rabbits.length; j++) {
+				state['' + this.items[i].id ].push(this.items[i].rabbits[j].id);
+			}
+		}
+		return state;
 	}
 
 };

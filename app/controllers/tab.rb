@@ -36,6 +36,13 @@ post '/tabs/new' do
   end
 end
 
+get '/tab/:tab_id/totals' do
+	@user = current_user
+	@tab = Tab.includes(:items).find(params[:tab_id])
+	@rabbits = @tab.rabbits
+	erb :'tab/totals'
+end
+
 
 get '/tab/:tab_id' do
 	if request.xhr?
@@ -43,7 +50,7 @@ get '/tab/:tab_id' do
 		tab = Tab.includes(:rabbits).includes(:items).find(params[:tab_id])
 		rabbits = tab.rabbits
 		items = tab.items
-		{tab: tab, rabbits: rabbits, items: items}.to_json
+		{tab: tab, rabbits: rabbits, items: items, item_owners: item_owners(items)}.to_json
 	else
 		@user = current_user
 		@tab = Tab.includes(:items).find(params[:tab_id])
@@ -66,15 +73,17 @@ end
 put '/tab/:tab_id' do
 	if request.xhr?
 		@tab = Tab.find(params[:tab_id])
-		p params
-		# @tab.items = get_items(params)
-		500
-		# content_type :json
-		# if @tab.save
-		# 	@tab.to_json
-		# else
-		# 	{errors: @tab.errors}.to_json
-		# end
+		# {"items"=>{"16"=>["1"], "17"=>["21"]}, "splat"=>[], "captures"=>["18"], "tab_id"=>"18"}
+		params['items'].each do |item_id, rabbits|
+			item = Item.find(item_id.to_i)
+			item.rabbits = rabbits.map{ |rabbit| Rabbit.find(rabbit.to_i) }
+			item.save!
+		end
+		content_type :json
+		tab = Tab.includes(:rabbits).includes(:items).find(params[:tab_id])
+		rabbits = tab.rabbits
+		items = tab.items.includes(:rabbits)
+		{tab: tab, rabbits: rabbits, items: items}.to_json
 	end
 end
 
