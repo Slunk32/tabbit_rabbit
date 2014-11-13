@@ -21,6 +21,10 @@ gem 'bcrypt'
 gem 'aws-sdk'
 gem 'paperclip-rack'
 
+group :production do
+	gem 'thin'
+end
+
 group :test do
   gem 'shoulda-matchers'
   gem 'rack-test'
