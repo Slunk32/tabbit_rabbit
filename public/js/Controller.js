@@ -101,6 +101,7 @@ Controller.prototype = {
 		})
 		.done( function(res) {
 			if (that.tab.parseData(res)) {
+				that.colorItems();
 			} else {
 				console.log("local instance doesn't have server state");
 			}
@@ -108,19 +109,26 @@ Controller.prototype = {
 	},
 
 	saveTab: function() {
-		console.log('saving');
+		console.log('saving...');
 		event.preventDefault();
-		console.log();
-		// $.ajax({
-		// 	url: event.target.action,
-		// 	type: 'put',
-		// 	data: this.tab
-		// })
-		// .done(function(res){
-		// 	console.log(res);
-		// })
-		// .fail(function(err){
-		// 	console.log(err);
-		// });
+		var itemState = {items: this.tab.getItemState()};
+		var that = this;
+		$.ajax({
+			url: event.target.action,
+			type: 'put',
+			data: itemState
+		})
+		.done(function(res){
+			window.location.replace('/tab/' + that.tab.id + '/totals');
+		})
+		.fail(function(err){
+			console.log(err);
+		});
+	},
+
+	colorItems: function() {
+		for(var i=0; i < this.tab.items.length; i++) {
+			this.tabView.colorItem({'itemID': this.tab.items[i].id, 'itemObj': this.tab.items[i]});
+		}
 	}
 };

@@ -43,5 +43,10 @@ helpers do
 		end
 		qanda
 	end
+
+	def item_owners(items)
+		items.map { |item| {id: item.id, rabbit_ids: item.rabbits.map(&:id) } }
+		# returns => [{id: id, rabbit_ids: []}]
+	end
 	
 end
