@@ -67,7 +67,7 @@ put '/tab/:tab_id' do
 	if request.xhr?
 		@tab = Tab.find(params[:tab_id])
 		p params
-		@tab.items = get_items(params)
+		# @tab.items = get_items(params)
 		500
 		# content_type :json
 		# if @tab.save

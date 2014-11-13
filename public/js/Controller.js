@@ -102,12 +102,25 @@ Controller.prototype = {
 		.done( function(res) {
 			if (that.tab.parseData(res)) {
 			} else {
+				console.log("local instance doesn't have server state");
 			}
 		});
 	},
 
 	saveTab: function() {
+		console.log('saving');
 		event.preventDefault();
-		console.log(this);
+		console.log();
+		// $.ajax({
+		// 	url: event.target.action,
+		// 	type: 'put',
+		// 	data: this.tab
+		// })
+		// .done(function(res){
+		// 	console.log(res);
+		// })
+		// .fail(function(err){
+		// 	console.log(err);
+		// });
 	}
 };

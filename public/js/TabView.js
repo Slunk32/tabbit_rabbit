@@ -11,7 +11,7 @@ function TabView() {
 	this.colorClasses = ["success","info","warning","danger","primary"];
 	this.selectedRabbitColor = this.colorClasses[0];
 	this.removeRabbit = '.remove_rabbit';
-	this.save_form = '#save_tab';
+	this.saveForm = '#save_tab';
 }
 
 TabView.prototype = {
