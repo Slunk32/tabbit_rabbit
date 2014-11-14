@@ -7,7 +7,7 @@
 		<ul class="list-group">
 			<li class="rabbit_total list-group-item list-group-item-<%= COLOR_CLASSES[index] %>" data-id="<%= rabbit.id %>" data-subtotal="<%= rabbit.subtotal(@tab) %>">
 				<span class="rabbit_name"><%= rabbit.name %></span>
-				<% if rabbit.phone_number && rabbit.phone_number.length == 10 || rabbit.phone_number.length == 11 %><span><button class='rabbit_phone' data-phone='<%= rabbit.phone_number %>'><span class="glyphicon glyphicon-send"></span></button></span><% end %>
+				<% if rabbit.phone_number && rabbit.phone_number =~ /(\d\D?){10}/ %><span><button class='rabbit_phone' data-phone='<%= rabbit.phone_number %>'><span class="glyphicon glyphicon-send"></span></button></span><% end %>
 				<span class="rabbit_after_tax_and_tip"><%= dollarize(rabbit.subtotal(@tab) * (1 + DEFAULT_TAX + DEFAULT_TIP)) %></span>
 				<span class="tax_and_tip"> + <%= dollarize(rabbit.subtotal(@tab) * (DEFAULT_TAX + DEFAULT_TIP)) %> = </span>
 				<span class="rab_sub"><%= dollarize(rabbit.subtotal(@tab)) %></span>
