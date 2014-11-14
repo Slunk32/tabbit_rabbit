@@ -20,6 +20,7 @@ gem 'money'
 gem 'bcrypt'
 gem 'httparty'
 gem 'dotenv'
+gem 'twilio-ruby' 
 
 group :production do
 	gem 'thin'

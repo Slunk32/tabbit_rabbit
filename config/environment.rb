@@ -21,6 +21,7 @@ require "sinatra/reloader" if development?
 require 'erb'
 require 'httparty'
 require 'dotenv'
+require 'twilio-ruby'
 
 
 # Some helper constants for path-centric logic

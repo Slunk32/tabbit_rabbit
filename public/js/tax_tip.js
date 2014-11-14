@@ -142,6 +142,32 @@ function TaxTipController(model, view) {
 
 TaxTipController.prototype = {
 
+	bindSMSButtons: function() {
+		that = this;
+		$('.rabbit_phone').on('click',function(event){ 
+			event.preventDefault();
+			that.sendSMS();
+			event.stopPropagation();
+		});
+	},
+
+	sendSMS: function() {
+		var phoneNumber = $(event.target).data('phone') || $(event.target).parent().data('phone');
+		var total = $(event.target).parents('.rabbit_total').find('.rabbit_after_tax_and_tip').text();
+		var rootURL = window.location.pathname.slice(0, window.location.pathname.indexOf('total'));
+		$.ajax({ url: rootURL + 'sms',
+						type: 'post',
+						data: { 		 phone: phoneNumber,
+												 total: total
+							     }
+				   })
+	   .done(function(res) {
+	     		console.log('success');
+	 	 }).fail(function(err) {
+	     		console.log('failure');
+			});
+	},
+
 	prepareModel: function() {
 		this.model.subtotal = parseFloat($(this.view.subtotal).data('subtotal')) / 100.0;
 		this.model.taxAmount = parseFloat($(this.view.taxAmount).val());
@@ -207,33 +233,9 @@ TaxTipController.prototype = {
 
 };
 
-var sendSMS = function() {
-	event.preventDefault();
-	var phone = $(event.target).data('phone');
-	var rootURL = window.location.pathname.slice(0, window.location.pathname.indexOf('total'));
-	$.ajax({ url: rootURL + 'sms',
-					type: 'post',
-					data: { 		 phone: phone,
-												name: 'You',
-										subtotal: '$12.50',
-											 total: '$15.83'
-						     }
-			   })
-   .done(function(res) {
-     		console.log('success');
- 	 }).fail(function(err) {
-     		console.log('failure');
-		});
-};
-
-
-var bindSMSButtons = function() {
-	$('.rabbit_phone').on('click',sendSMS);
-};
-
 $(document).ready(function() {
 	var controller = new TaxTipController(new TaxTipModel(), new TaxTipView() );
 	controller.prepareModel();
 	controller.bindEvents();
-	bindSMSButtons();
+	controller.bindSMSButtons();
 });
