@@ -151,14 +151,14 @@ TaxTipController.prototype = {
 		this.model.rabbitData = this.view.getRabbitData();
 		this.model.updateRabbitData();
 		this.model.updateTotalData();
-		console.log("Initial: Tip %: " +  this.model.tipPercent);
-		console.log("Initial: Tip #: " + this.model.tipAmount);
-		console.log("Initial: Tax %: " + this.model.taxPercent);
-		console.log("Initial: Tax #: " + this.model.taxAmount);
-		console.log("Initial Rabbit:");
-		console.log(this.model.rabbitData);
-		console.log("Initial Total:");
-		console.log(this.model.totalData);
+		// console.log("Initial: Tip %: " +  this.model.tipPercent);
+		// console.log("Initial: Tip #: " + this.model.tipAmount);
+		// console.log("Initial: Tax %: " + this.model.taxPercent);
+		// console.log("Initial: Tax #: " + this.model.taxAmount);
+		// console.log("Initial Rabbit:");
+		// console.log(this.model.rabbitData);
+		// console.log("Initial Total:");
+		// console.log(this.model.totalData);
 	},
 
 	bindEvents: function() {
@@ -169,28 +169,28 @@ TaxTipController.prototype = {
 	},
 
 	changedTaxAmount: function() {
-		console.log('tax amount changed');
+		// console.log('tax amount changed');
 		this.model.taxAmount = parseFloat($(this.view.taxAmount).val());
 		this.view.updateTaxPercent(this.model.updateTaxPercent());
 		this.updateRabbitsAndTotals();
 	},
 
 	changedTipAmount: function() {
-		console.log('changing tip amounts');
+		// console.log('changing tip amounts');
 		this.model.tipAmount = parseFloat($(this.view.tipAmount).val());
 		this.view.updateTipPercent(this.model.updateTipPercent());
 		this.updateRabbitsAndTotals();
 	},
 
 	changedTaxPercent: function() {
-		console.log('changing tax percent');
+		// console.log('changing tax percent');
 		this.model.taxPercent = parseFloat($(this.view.taxPercent).val());
 		this.view.updateTaxAmount(this.model.updateTaxAmount());
 		this.updateRabbitsAndTotals();
 	},
 
 	changedTipPercent: function() {
-		console.log('changing tip percent');
+		// console.log('changing tip percent');
 		this.model.tipPercent = parseFloat($(this.view.tipPercent).val());
 		this.view.updateTipAmount(this.model.updateTipAmount());
 		this.updateRabbitsAndTotals();
@@ -199,10 +199,10 @@ TaxTipController.prototype = {
 	updateRabbitsAndTotals: function() {
 		this.view.updateRabbitData(this.model.updateRabbitData());
 		this.view.updateTotalData(this.model.updateTotalData());
-		console.log("Updated: Tip %: " +  this.model.tipPercent);
-		console.log("Updated: Tip #: " + this.model.tipAmount);
-		console.log("Updated: Tax %: " + this.model.taxPercent);
-		console.log("Updated: Tax #: " + this.model.taxAmount);
+		// console.log("Updated: Tip %: " +  this.model.tipPercent);
+		// console.log("Updated: Tip #: " + this.model.tipAmount);
+		// console.log("Updated: Tax %: " + this.model.taxPercent);
+		// console.log("Updated: Tax #: " + this.model.taxAmount);
 	}
 
 };
