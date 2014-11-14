@@ -130,3 +130,8 @@ post '/twiliostatus' do
 	p request
 	p request.body
 end
+
+get '/venmo' do
+	p request
+	params[:venmo_challenge]
+end
