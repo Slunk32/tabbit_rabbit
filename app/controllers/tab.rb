@@ -97,6 +97,9 @@ post '/tab/:tab_id/sms' do
 	account_sid = ENV['TWILIOSID']
 	auth_token = ENV['TWILIOAUTHTOKEN'] 
 
+	p account_sid
+	p auth_token
+
 	@client = Twilio::REST::Client.new account_sid, auth_token 
 
 	body = "#{@user.name} requests payment of #{params[:total]}. See your tab online at http://#{request.host}/tab/#{params[:tab_id]}"

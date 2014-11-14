@@ -152,9 +152,17 @@ TaxTipController.prototype = {
 	},
 
 	sendSMS: function() {
+		that = this;
 		var phoneNumber = $(event.target).data('phone') || $(event.target).parent().data('phone');
 		var total = $(event.target).parents('.rabbit_total').find('.rabbit_after_tax_and_tip').text();
 		var rootURL = window.location.pathname.slice(0, window.location.pathname.indexOf('total'));
+		glyphNode = $(event.target);
+		if (glyphNode.children().length) {
+			glyphNode = glyphNode.children();
+		}
+		// console.log(glyphNode);
+		glyphNode.removeClass('glyphicon-send').addClass('glyphicon-flash'); // change button icon to glyphicon-flash and disable it
+		// todo unbind event handler
 		$.ajax({ url: rootURL + 'sms',
 						type: 'post',
 						data: { 		 phone: phoneNumber,
@@ -163,8 +171,10 @@ TaxTipController.prototype = {
 				   })
 	   .done(function(res) {
 	     		console.log('success');
+	     		glyphNode.removeClass('glyphicon-flash').addClass('glyphicon-ok');
 	 	 }).fail(function(err) {
 	     		console.log('failure');
+	     		glyphNode.removeClass('glyphicon-flash').addClass('glyphicon-send');
 			});
 	},
 
