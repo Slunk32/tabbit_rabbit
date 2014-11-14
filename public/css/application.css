@@ -185,3 +185,8 @@ danger = #f2dede
 #save_tab {
   display: inline-block;
 }
+
+.venmo_icon {
+  width: 20px;
+  height: 20px;
+}

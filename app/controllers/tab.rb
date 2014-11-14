@@ -94,8 +94,8 @@ end
 
 post '/tab/:tab_id/sms' do
 	@user = current_user
-	account_sid = 'AC4dd9d8bed4276df4336151a0a8d1ac02' 
-	auth_token = 'd281581fcfd0adb3590de5d07807fcc7' 
+	account_sid = ENV['TWILIOSID']
+	auth_token = ENV['TWILIOAUTHTOKEN'] 
 
 	@client = Twilio::REST::Client.new account_sid, auth_token 
 
@@ -131,7 +131,16 @@ post '/twiliostatus' do
 	p request.body
 end
 
+get '/add_venmo' do
+	"https://api.venmo.com/v1/oauth/authorize?client_id=#{ENV['VENMOKEY']}&scope=make_payments"
+end
+
+
 get '/venmo' do
 	p request
 	params[:venmo_challenge]
+end
+
+post '/venmo' do
+	p request
 end

@@ -21,6 +21,8 @@ require "sinatra/reloader" if development?
 require 'erb'
 require 'httparty'
 require 'dotenv'
+Dotenv.load
+
 require 'twilio-ruby'
 
 

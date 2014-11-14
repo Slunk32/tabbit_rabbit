@@ -1,4 +1,9 @@
 <% if authenticated? %>
+  <ul class="list-group">
+  <li class="add_venmo list-group-item vcenter text-center">
+  <a href='/add_venmo'>New! Link your <img src='/img/venmo-app-icon.png' class="venmo_icon vcenter" /> Venmo account! </a>
+  </li>
+  </ul>
   <form class="form-signin" role="form" method="get" action="/tabs/new">
     <button class="btn btn-lg btn-warning btn-block" type="submit">New Tab</button>
   </form>
