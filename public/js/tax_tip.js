@@ -16,7 +16,7 @@ TaxTipView.prototype = {
 	getRabbitData: function() {
 		var rabbitData = [];
 		var rabbitNodes = $(this.rabbits);
-		if (rabbitNodes.length == 1) {
+		if (Object.prototype.toString.call(rabbitNodes) != '[object Array]') {
 			rabbitNodes = [rabbitNodes];
 		}
 		for (var i=0; i<rabbitNodes.length; i++) {
