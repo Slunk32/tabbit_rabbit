@@ -207,10 +207,33 @@ TaxTipController.prototype = {
 
 };
 
+var sendSMS = function() {
+	event.preventDefault();
+	var phone = $(event.target).data('phone');
+	var rootURL = window.location.pathname.slice(0, window.location.pathname.indexOf('total'));
+	$.ajax({ url: rootURL + 'sms',
+					type: 'post',
+					data: { 		 phone: phone,
+												name: 'You',
+										subtotal: '$12.50',
+											 total: '$15.83'
+						     }
+			   })
+   .done(function(res) {
+     		console.log('success');
+ 	 }).fail(function(err) {
+     		console.log('failure');
+		});
+};
 
+
+var bindSMSButtons = function() {
+	$('.rabbit_phone').on('click',sendSMS);
+};
 
 $(document).ready(function() {
 	var controller = new TaxTipController(new TaxTipModel(), new TaxTipView() );
 	controller.prepareModel();
 	controller.bindEvents();
+	bindSMSButtons();
 });

@@ -18,8 +18,8 @@ gem 'shotgun'
 # Other gems
 gem 'money'
 gem 'bcrypt'
-gem 'aws-sdk'
-gem 'paperclip-rack'
+gem 'httparty'
+gem 'dotenv'
 
 group :production do
 	gem 'thin'

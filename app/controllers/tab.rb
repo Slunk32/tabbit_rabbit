@@ -91,3 +91,12 @@ end
 post '/tab/newimage' do
 	@image = params[:image]
 end
+
+post '/tab/:tab_id/sms' do
+	uri = "https://api.twilio.com/2010-04-01/Accounts/AC4dd9d8bed4276df4336151a0a8d1ac02/Messages"
+	p uri
+	HTTParty.post(uri,body: {
+		'From' => '+18327722248',
+		'To' => '+1' + params[:phone],
+		'Body' => "#{params[:name]} just calculated your tab using Tabbit Rabbit. See your tab online at http://#{request.host}/tab/#{params[:tab_id]}"})
+end
