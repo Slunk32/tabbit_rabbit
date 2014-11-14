@@ -40,6 +40,7 @@ get '/tab/:tab_id/totals' do
 	@user = current_user
 	@tab = Tab.includes(:items).find(params[:tab_id])
 	@rabbits = @tab.rabbits
+	@subtotal = @rabbits.map { |rabbit| rabbit.subtotal(@tab) }.reduce(:+)
 	erb :'tab/totals'
 end
 

@@ -1,8 +1,29 @@
 body { padding-bottom: 70px; }
 
-.item_price, .rabbit_subtotal {
+.item_price {
 	float:right;
   cursor:pointer;
+}
+
+.tax_tip {
+  display: inline-block;
+  margin: 0 auto;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.wrap {
+  text-align: center;
+  width: 100%;
+}
+
+.rabbit_subtotal {
+  margin-left: 10px;
+}
+
+.rabbit_after_tax_and_tip, .tax_and_tip, .rab_sub {
+  padding-right: 5px;
+  float:right;
 }
 
 #totals {

@@ -5,6 +5,10 @@ helpers do
 		"$%.2f" % (price/100.0)
 	end
 
+
+	DEFAULT_TAX = 0.0875
+	DEFAULT_TIP = 0.18
+
 	COLOR_CLASSES = ["success","info","warning","danger","primary","success","info","warning","danger","primary"]
 
 	def authenticated?
