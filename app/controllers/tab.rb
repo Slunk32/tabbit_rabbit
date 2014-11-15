@@ -97,9 +97,6 @@ post '/tab/:tab_id/sms' do
 	account_sid = ENV['TWILIOSID']
 	auth_token = ENV['TWILIOAUTHTOKEN'] 
 
-	p account_sid
-	p auth_token
-
 	@client = Twilio::REST::Client.new account_sid, auth_token 
 
 	body = "#{@user.name} requests payment of #{params[:total]}. See your tab online at http://#{request.host}/tab/#{params[:tab_id]}"
@@ -135,13 +132,25 @@ post '/twiliostatus' do
 end
 
 get '/add_venmo' do
-	"https://api.venmo.com/v1/oauth/authorize?client_id=#{ENV['VENMOKEY']}&scope=make_payments"
+	url = "https://api.venmo.com/v1/oauth/authorize?client_id=#{ENV['VENMOID']}&scope=make_payments&response_type=code&redirect_uri=http://tabbitrabbit.herokuapp.com/venmo/#{current_user.id}"
+	redirect url
 end
 
 
-get '/venmo' do
-	p request
-	params[:venmo_challenge]
+get '/venmo/:user_id' do
+	params[:code]
+	url = 'https://api.venmo.com/v1/oauth/access_token'
+	response = HTTParty.post(url, body: {
+		"client_id" => ENV['VENMOID'],
+		   "client_secret" => ENV['VENMOSECRET'],
+		   "code" => params[:code]
+		})
+	parsed_response = JSON.parse(response)
+	@user = User.find(params[:user_id])
+	@user.vm_authtoken = parsed_response[:access_token]
+	@user.vm_authrefreshtoken = parsed_response[:refresh_token]
+	@user.save
+	redirect '/'
 end
 
 post '/venmo' do
