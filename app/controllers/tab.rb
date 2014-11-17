@@ -145,14 +145,11 @@ get '/venmo/:user_id' do
 		   "client_secret" => ENV['VENMOSECRET'],
 		   "code" => params[:code]
 		})
-	erb :response
-	# parsed_response = JSON.parse(response)
-	# p parsed_response
-	# # @user = User.find(params[:user_id])
-	# # @user.vm_authtoken = parsed_response[:access_token]
-	# # @user.vm_authrefreshtoken = parsed_response[:refresh_token]
-	# # @user.save
-	# parsed_response
+	@user = User.find(params[:user_id])
+	@user.vm_authtoken = response['access_token']
+	@user.vm_authrefreshtoken = response['refresh_token']
+	@user.save
+	redirect '/'
 end
 
 post '/venmo' do
