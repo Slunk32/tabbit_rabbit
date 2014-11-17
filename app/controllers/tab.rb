@@ -140,12 +140,11 @@ end
 get '/venmo/:user_id' do
 	params[:code]
 	url = 'https://api.venmo.com/v1/oauth/access_token'
-	response = HTTParty.post(url, body: {
+	@response = HTTParty.post(url, body: {
 		"client_id" => ENV['VENMOID'],
 		   "client_secret" => ENV['VENMOSECRET'],
 		   "code" => params[:code]
 		})
-	@response
 	erb :response
 	# parsed_response = JSON.parse(response)
 	# p parsed_response
