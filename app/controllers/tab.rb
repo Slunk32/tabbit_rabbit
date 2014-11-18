@@ -147,7 +147,8 @@ get '/venmo/:user_id' do
 	user = User.find(params[:user_id])
 	user.vm_authtoken = res['access_token']
 	user.vm_authrefreshtoken = res['refresh_token']
-	if user.save
+	user.save!
+	if user.vm_authtoken
 		redirect '/'
 	else
 		'Failure!'
