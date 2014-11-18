@@ -151,6 +151,7 @@ get '/venmo/:user_id' do
 		redirect '/'
 	else
 		'Failure!'
+	end
 end
 
 post '/venmo' do
