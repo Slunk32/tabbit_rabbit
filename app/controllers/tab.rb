@@ -144,14 +144,14 @@ end
 get '/venmo/:user_id' do
 	url = 'https://api.venmo.com/v1/oauth/access_token'
 	res = HTTParty.post(url, body: { "client_id" => ENV['VENMOID'], "client_secret" => ENV['VENMOSECRET'], "code" => params[:code] })
-	user = User.find(params[:user_id])
-	user.vm_authtoken = res['access_token']
-	user.vm_authrefreshtoken = res['refresh_token']
-	user.save!
+	@user = User.find(params[:user_id])
+	@user.vm_authtoken = res['access_token']
+	@user.vm_authrefreshtoken = res['refresh_token']
+	@user.save!
 	if user.vm_authtoken
 		redirect '/'
 	else
-		'Failure!'
+		@user
 	end
 end
 
