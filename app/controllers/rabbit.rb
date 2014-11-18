@@ -1,3 +1,7 @@
+after do
+  ActiveRecord::Base.clear_active_connections!
+end
+
 post '/tab/:tab_id/rabbit/new' do
 	user = current_user
 	rabbit = Rabbit.new(name: params[:name], phone_number: params[:phone_number], email: params[:email])

@@ -1,3 +1,7 @@
+after do
+  ActiveRecord::Base.clear_active_connections!
+end
+
 get '/login' do
   redirect '/' if authenticated?
   # Render errors if there are any
