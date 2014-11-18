@@ -113,7 +113,7 @@ post '/tab/:tab_id/sms' do
 		# 	'note' => "Our tab on Tabbit Rabbit",
 		# 	'amount' => '-' + params[:total],
 		# 	'phone' => params[:phone]})
-		body += " Pay easily with Venmo: https://venmo.com/?txn=pay&recipients=#{@user.phone_number}&amount=#{params[:total]}&note=#{@tab.name}"
+		body += " Pay easily with Venmo: https://venmo.com/?txn=pay&recipients=#{@user.phone_number}&amount=#{params[:total]}&note=#{Rack::Utils.escape(@tab.name)}"
 	end
 
 	@client.account.messages.create({
