@@ -151,7 +151,7 @@ get '/venmo/:user_id' do
 	if @user.vm_authtoken
 		redirect '/'
 	else
-		@user
+		p @user
 	end
 end
 
