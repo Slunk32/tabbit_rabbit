@@ -104,15 +104,16 @@ post '/tab/:tab_id/sms' do
 	@client = Twilio::REST::Client.new account_sid, auth_token 
 
 	body = "#{@user.name} requests payment of #{params[:total]}. See your tab online at http://#{request.host}/tab/#{params[:tab_id]}"
-	
+	@tab = Tab.find(params[:tab_id])
+
 	unless @user.vm_authtoken.nil?
-		venmo_url = 'https://api.venmo.com/v1/payments'
-		res = HTTParty.post(url, body: { "access_token" => @user.vm_authtoken,
-			'audience' => 'friends',
-			'note' => "Our tab on Tabbit Rabbit",
-			'amount' => '-' + params[:total],
-			'phone' => params[:phone]})
-		body += ' You can pay easily with Venmo.'
+		# venmo_url = 'https://api.venmo.com/v1/payments'
+		# res = HTTParty.post(url, body: { "access_token" => @user.vm_authtoken,
+		# 	'audience' => 'friends',
+		# 	'note' => "Our tab on Tabbit Rabbit",
+		# 	'amount' => '-' + params[:total],
+		# 	'phone' => params[:phone]})
+body += " Pay easily with Venmo: https://venmo.com/?txn=pay&recipients=#{@user.phone_number}&amount=#{params[:total]}&note=#{@tab.name}'
 	end
 
 	@client.account.messages.create({
