@@ -148,7 +148,7 @@ get '/venmo/:user_id' do
 	@user.vm_authtoken = res['access_token']
 	@user.vm_authrefreshtoken = res['refresh_token']
 	@user.save!
-	if user.vm_authtoken
+	if @user.vm_authtoken
 		redirect '/'
 	else
 		@user
