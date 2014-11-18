@@ -136,22 +136,22 @@ post '/twiliostatus' do
 end
 
 get '/add_venmo' do
-	url = "https://api.venmo.com/v1/oauth/authorize?client_id=#{ENV['VENMOID']}&scope=make_payments&response_type=code&redirect_uri=http://tabbitrabbit.herokuapp.com/venmo/#{current_user.id}"
+	url = "https://api.venmo.com/v1/oauth/authorize?client_id=#{ENV['VENMOID']}&scope=make_payments&response_type=code&redirect_uri=http://tabbitrabbit.herokuapp.com/venmo/#{current_user.id}/"
 	redirect url
 end
 
 
-get '/venmo/:user_id' do
+get '/venmo/:user_id/' do
 	url = 'https://api.venmo.com/v1/oauth/access_token'
 	res = HTTParty.post(url, body: { "client_id" => ENV['VENMOID'], "client_secret" => ENV['VENMOSECRET'], "code" => params[:code] })
-	@user = User.find(params[:user_id])
+	@user = User.find(5)
 	@user.vm_authtoken = res['access_token']
 	@user.vm_authrefreshtoken = res['refresh_token']
 	@user.save!
 	if @user.vm_authtoken
 		redirect '/'
 	else
-		p @user
+		@user
 	end
 end
 
