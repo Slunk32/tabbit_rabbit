@@ -1,7 +1,11 @@
 <% if authenticated? %>
   <ul class="list-group">
   <li class="add_venmo list-group-item vcenter text-center">
-  <a href='/add_venmo'>New! Link your <img src='/img/venmo-app-icon.png' class="venmo_icon vcenter" /> Venmo account! </a>
+  <% if (! @user.vm_authtoken.nil? ) %>
+    <a href='/add_venmo'>New! Link your <img src='/img/venmo-app-icon.png' class="venmo_icon vcenter" /> Venmo account! </a>
+  <% else %>
+    <img src='/img/venmo-app-icon.png' class="venmo_icon vcenter" /> Venmo account linked! <a href='/remove_venmo'>Unlink?</a>
+  <% end %>
   </li>
   </ul>
   <form class="form-signin" role="form" method="get" action="/tabs/new">
