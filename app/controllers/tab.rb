@@ -99,35 +99,28 @@ end
 post '/tab/:tab_id/sms' do
 	@user = current_user
 	account_sid = ENV['TWILIOSID']
-	auth_token = ENV['TWILIOAUTHTOKEN'] 
+	auth_token = ENV['TWILIOAUTHTOKEN']
 
 	@client = Twilio::REST::Client.new account_sid, auth_token 
 
 	body = "#{@user.name} requests payment of #{params[:total]}. See your tab online at http://#{request.host}/tab/#{params[:tab_id]}"
 	
+	unless @user.vm_authtoken.nil?
+		venmo_url = 'https://api.venmo.com/v1/payments'
+		res = HTTParty.post(url, body: { "access_token" => @user.vm_authtoken,
+			'audience' => 'friends',
+			'note' => "Our tab on Tabbit Rabbit",
+			'amount' => '-' + params[:total],
+			'phone' => params[:phone]})
+		body += ' You can pay easily with Venmo.'
+	end
+
 	@client.account.messages.create({
 		:from => '+18327722248', 
 		:to => params[:phone], 
 		:body => body
 	})
 
-	# uri = "https://api.twilio.com/2010-04-01/Accounts/AC4dd9d8bed4276df4336151a0a8d1ac02/Messages"
-	# 
-	# p params['phone']
-	# p params[:phone]
-	# p body
-	# response = HTTParty.post(uri, body: {
-	# 	:from => '+18327722248', 
-	# 	:to => '4152094815', 
-	# 	:body => 'Hello from Tabbit Rabbit',  
-	# 	:status_callback => 'http://localhost:9393/twiliostatus',
-	# 	:Authorization => "Basic AC4dd9d8bed4276df4336151a0a8d1ac02:d281581fcfd0adb3590de5d07807fcc7"
-	# 	})
-	# To: '+1' + params['phone'],
-	# Body: body,
-	# StatusCallback: 'http://localhost:9393/twiliostatus',
-	# Auth_Token: 'AC4dd9d8bed4276df4336151a0a8d1ac02',
-	# Account_Sid: 'd281581fcfd0adb3590de5d07807fcc7'
 end
 
 post '/twiliostatus' do 
@@ -151,10 +144,10 @@ end
 
 get '/venmo/:user_id/' do
 	url = 'https://api.venmo.com/v1/oauth/access_token'
-	@res = HTTParty.post(url, body: { "client_id" => ENV['VENMOID'], "client_secret" => ENV['VENMOSECRET'], "code" => params[:code] })
+	res = HTTParty.post(url, body: { "client_id" => ENV['VENMOID'], "client_secret" => ENV['VENMOSECRET'], "code" => params[:code] })
 	@user = User.find(params[:user_id])
-	@user.vm_authtoken = @res['access_token']
-	@user.vm_authrefreshtoken = @res['refresh_token']
+	@user.vm_authtoken = res['access_token']
+	@user.vm_authrefreshtoken = res['refresh_token']
 	@user.save
 	redirect '/'
 end
