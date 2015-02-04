@@ -16,15 +16,12 @@ TaxTipView.prototype = {
 	getRabbitData: function() {
 		var rabbitData = [];
 		var rabbitNodes = $(this.rabbits);
-		if (Object.prototype.toString.call(rabbitNodes) != '[object Array]') {
-			rabbitNodes = [rabbitNodes];
-		}
-		for (var i=0; i<rabbitNodes.length; i++) {
+		rabbitNodes.each(function(i, value) {
 			rabbitData[i] = {
-				id: rabbitNodes[i].data("id"),
-				subtotal: parseInt(rabbitNodes[i].data("subtotal")) / 100.0
+				'id': $(value).data("id"),
+				'subtotal': parseInt($(value).data("subtotal")) / 100.0
 			};
-		}
+		});
 		return rabbitData;
 	},
 
@@ -32,20 +29,13 @@ TaxTipView.prototype = {
 		var taxAndTip;
 		var rabbitNodes;
 		var rabbitNode;
-		if (Object.prototype.toString.call( rabbitData ) != '[object Array]') {
-			rabbitData = [rabbitData];
-		}
 		rabbitNodes = $(this.rabbits);
-		for (var i=0; i<rabbitData.length; i++) {
-			if (Object.prototype.toString.call( rabbitNodes) != '[object Array]') {
-				rabbitNode = rabbitNodes;
-			} else {
-				rabbitNode = $(this.rabbits).find('*[data-id="' + rabbitData[i].id + '"]');
-			}
+		rabbitNodes.each(function(i, value) {
+			rabbitNode = $(value);
 			taxAndTip = (rabbitData[i].tax + rabbitData[i].tip).toFixed(2);
 			rabbitNode.find('.tax_and_tip').text(' + $' + taxAndTip + ' = ');
 			rabbitNode.find('.rabbit_after_tax_and_tip').text('$' + rabbitData[i].total.toFixed(2));
-		}
+		});
 	},
 
 	updateTotalData: function(totalData) {
@@ -83,7 +73,7 @@ function TaxTipModel() {
 	this.tipAmount = 0;
 	this.taxPercent = 0;
 	this.taxPercent = 0;
-	this.rabbitData = {};
+	this.rabbitData = [];
 	this.subtotal = 0;
 	this.totalData = {};
 }
