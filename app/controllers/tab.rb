@@ -130,7 +130,7 @@ post '/twiliostatus' do
 end
 
 get '/add_venmo' do
-	url = "https://api.venmo.com/v1/oauth/authorize?client_id=#{ENV['VENMOID']}&scope=make_payments&response_type=code&redirect_uri=http://tabbitrabbit.herokuapp.com/venmo/#{current_user.id}/"
+	url = "https://api.venmo.com/v1/oauth/authorize?client_id=#{ENV['VENMOID']}&scope=make_payments&response_type=code&redirect_uri=http://www.tabbitrabbit.com/venmo/#{current_user.id}/"
 	redirect url
 end
 
