@@ -3,6 +3,7 @@ function TabView() {
 	this.addButton = '.add_user';
 	this.saveRabbit = '.save_rabbit';
 	this.formToAddRabbit = '#add_rabbit';
+	this.formToAddExisting = '#add_existing';
 	this.addModal = '#addModal';
 	this.rabbit = '.rabbit';
 	this.rabbitButton = '.rabbit_itself';

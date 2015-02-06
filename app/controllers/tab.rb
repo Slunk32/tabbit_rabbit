@@ -75,27 +75,6 @@ post '/tab/:id/rename' do
 	end
 end
 
-put '/tab/:tab_id' do
-	if request.xhr?
-		@tab = Tab.find(params[:tab_id])
-		# {"items"=>{"16"=>["1"], "17"=>["21"]}, "splat"=>[], "captures"=>["18"], "tab_id"=>"18"}
-		params['items'].each do |item_id, rabbits|
-			item = Item.find(item_id.to_i)
-			item.rabbits = rabbits.map{ |rabbit| Rabbit.find(rabbit.to_i) }
-			item.save!
-		end
-		content_type :json
-		tab = Tab.includes(:rabbits).includes(:items).find(params[:tab_id])
-		rabbits = tab.rabbits
-		items = tab.items.includes(:rabbits)
-		{tab: tab, rabbits: rabbits, items: items}.to_json
-	end
-end
-
-post '/tab/newimage' do
-	@image = params[:image]
-end
-
 post '/tab/:tab_id/sms' do
 	@user = current_user
 	account_sid = ENV['TWILIOSID']
@@ -122,6 +101,27 @@ post '/tab/:tab_id/sms' do
 		:body => body
 	})
 
+end
+
+put '/tab/:tab_id' do
+	if request.xhr?
+		@tab = Tab.find(params[:tab_id])
+		# {"items"=>{"16"=>["1"], "17"=>["21"]}, "splat"=>[], "captures"=>["18"], "tab_id"=>"18"}
+		params['items'].each do |item_id, rabbits|
+			item = Item.find(item_id.to_i)
+			item.rabbits = rabbits.map{ |rabbit| Rabbit.find(rabbit.to_i) }
+			item.save!
+		end
+		content_type :json
+		tab = Tab.includes(:rabbits).includes(:items).find(params[:tab_id])
+		rabbits = tab.rabbits
+		items = tab.items.includes(:rabbits)
+		{tab: tab, rabbits: rabbits, items: items}.to_json
+	end
+end
+
+post '/tab/newimage' do
+	@image = params[:image]
 end
 
 post '/twiliostatus' do 

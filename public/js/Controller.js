@@ -11,6 +11,7 @@ Controller.prototype = {
 		this.makeRabbitsSelectable();
 		this.makeItemsSelectable();
 		$(this.tabView.saveRabbit).on('click', this.addRabbit.bind(this));
+		$(this.tabView.formToAddExisting).on('submit', this.addExistingRabbit.bind(this));
 		$(document).on('click', this.tabView.removeRabbit, this.removeRabbit.bind(this));
 		$(this.tabView.saveForm).on('submit',this.saveTab.bind(this));
 	},
@@ -55,6 +56,24 @@ Controller.prototype = {
 		$.ajax({
 			url: '/tab/' + that.tab.id + '/rabbit/new',
 			type: 'post',
+			data: rabbit_info
+		})
+		.done(function(res) {
+			var rabbit = that.tab.addRabbit(res);
+			that.tabView.addRabbit(rabbit);
+		})
+		.fail(function(err) {
+			this.tabView.showAddRabbitErrors(err);
+		});
+	},
+
+	addExistingRabbit: function () {
+		event.preventDefault();
+		var that = this;
+		var rabbit_info = $(this.tabView.formToAddExisting).serialize();
+		$.ajax({
+			url: '/tab/' + that.tab.id + '/rabbit',
+			type: 'put',
 			data: rabbit_info
 		})
 		.done(function(res) {

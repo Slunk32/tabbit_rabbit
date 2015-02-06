@@ -16,6 +16,19 @@ post '/tab/:tab_id/rabbit/new' do
 	end
 end
 
+put '/tab/:tab_id/rabbit' do
+	user = current_user
+	tab = Tab.find(params[:tab_id])
+	rabbit = Rabbit.find(params[:rabbit])
+	rabbit.tabs << tab
+	if rabbit.save
+		content_type :json
+		rabbit.to_json
+	else
+		halt 400, rabbit.errors.to_json
+	end
+end
+
 # edit the rabbit
 put '/rabbit/:rabbit_id' do
 	rabbit = Rabbit.find(params[:rabbit_id])
