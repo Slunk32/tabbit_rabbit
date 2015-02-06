@@ -104,6 +104,16 @@ TabView.prototype = {
 	  	this.removeColor(color);
 	  },
 
+	  addRabbitToExistingSelect: function(rabbitName, rabbitID) {
+	  	console.log('adding rabbit to select');
+	  	$(this.formToAddExisting).find('.selectpicker').append('<option value="' + rabbitID + '">' + rabbitName + '</option>');
+	  },
+
+	  removeRabbitFromExistingSelect: function(rabbitID) {
+	  	console.log('removing rabbit from select');
+	  	$(this.formToAddExisting).find('option[value="' + rabbitID + '"]').remove();
+	  },
+
 	  addRabbit: function(rabbitObj) {
 	  	that = this;
 	  	that.hideAddModal();

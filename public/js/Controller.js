@@ -79,6 +79,7 @@ Controller.prototype = {
 		.done(function(res) {
 			var rabbit = that.tab.addRabbit(res);
 			that.tabView.addRabbit(rabbit);
+			that.tabView.removeRabbitFromExistingSelect(rabbit.id);
 		})
 		.fail(function(err) {
 			this.tabView.showAddRabbitErrors(err);
@@ -98,6 +99,7 @@ Controller.prototype = {
 		.done(function(res) {
 			that.tab.removeRabbit(res.id);
 			that.tabView.removeRabbitNode(res.id);
+			that.tabView.addRabbitToExistingSelect(res.name, res.id);
 			// var rabbitColor = 
 			// for (var i=0; i < that.items.length; i++) {
 			// 	that.tabView.removeColor(rabbitColor, that.items[i]);
