@@ -18,8 +18,8 @@
             <li class="tab_title list-group-item vcenter">
               <a href="/tab/<%= tab.id %>">
               <span class="tab_name col-lg-4 col-md-4 col-xs-8 vcenter nopad"><strong><%= tab.name %></strong></span>
-              <span class="tab_dine_date col-lg-4 col-md-4 col-xs-4 vcenter nopad"><%= tab.dine_date %></span>
-              <span class="tab_rabbit_count col-lg-4 col-md-4 visible-lg visible-md vcenter nopad"><%= tab.rabbits.length %> Rabbit<%= 's' if tab.rabbits.length > 1 %></span>
+              <span class="tab_dine_date col-lg-4 col-md-4 col-xs-4 vcenter nopad text-right"><%= tab.dine_date.strftime('%b %-d') %></span>
+              <span class="tab_rabbit_count col-lg-4 col-md-4 visible-lg visible-md vcenter nopad text-right"><%= tab.rabbits.length %> Rabbit<%= 's' if tab.rabbits.length > 1 %></span>
             </a>
           </li>
         <% end %>
