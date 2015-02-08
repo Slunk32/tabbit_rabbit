@@ -33,13 +33,13 @@
   <% (1..8).each do |index| %>
     <div class="row item_input_cell" data-id="<%= index %>">
       <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3">
-        <input type="text" class="form-control text-right" placeholder="1" value="1" name="item_<%= index %>[quantity]" />
+        <input type="text" class="form-control text-right" placeholder="1" value="1" name="item_<%= index %>[quantity]" pattern="\d*"></input>
       </div>
       <div class="col-lg-9 col-md-9 col-sm-8 col-xs-6">
-        <input type="text" class="form-control" placeholder="Item #<%= index %>" value="" name="item_<%= index %>[name]" />
+        <input type="text" class="form-control" placeholder="Item #<%= index %>" value="" name="item_<%= index %>[name]"></input>
       </div>
       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
-        <input type="text" class="form-control" pattern="\d+(\.\d{2})?" placeholder="0.00" value="" name="item_<%= index %>[price]" />
+        <input type="text" class="form-control" pattern="\d+(\.\d{2})?" placeholder="0.00" value="" name="item_<%= index %>[price]" pattern="\d*"></input>
       </div>
     </div>
   <% end %>
