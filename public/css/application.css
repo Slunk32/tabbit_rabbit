@@ -190,3 +190,8 @@ danger = #f2dede
   width: 20px;
   height: 20px;
 }
+
+.nopad {
+  padding-left: 0px;
+  padding-right: 0px;
+}
